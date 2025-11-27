@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
 import ModalShell from './modals/ModalShell'
+import { MODAL_TWO_COLUMN_LAYOUT } from './modals/modalConfig'
 import { TextInput, DateInput } from './ui'
 
 interface DriversLicenseModalProps {
@@ -38,7 +39,7 @@ export default function DriversLicenseModal({ isOpen, onClose }: DriversLicenseM
           primary: { label: 'Continue', onClick: handleContinue },
         }}
       >
-        <div className="flex flex-col md:flex-row gap-4 md:gap-12 items-start w-full">
+        <div className={MODAL_TWO_COLUMN_LAYOUT}>
           <div className="flex flex-1 flex-col gap-4 items-start w-full">
             <div className="flex flex-col gap-2 items-start w-full">
               <label className="font-medium leading-5 text-sm text-[#0a0a0a]">

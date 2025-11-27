@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
 import ModalShell from './modals/ModalShell'
+import { MODAL_TWO_COLUMN_LAYOUT } from './modals/modalConfig'
 import { TextInput, DateInput } from './ui'
 
 interface DigitalIdentityModalProps {
@@ -38,8 +39,7 @@ export default function DigitalIdentityModal({ isOpen, onClose }: DigitalIdentit
           primary: { label: 'Continue', onClick: handleContinue },
         }}
       >
-        {/* Content - Responsive: one column on mobile, two columns on desktop */}
-        <div className="flex flex-col md:flex-row gap-4 md:gap-12 items-start w-full">
+        <div className={MODAL_TWO_COLUMN_LAYOUT}>
           {/* Left Column */}
           <div className="flex flex-1 flex-col gap-4 items-start w-full">
             <div className="flex flex-col gap-2 items-start w-full">

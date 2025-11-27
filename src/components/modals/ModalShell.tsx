@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react'
 import { Button, useFocusTrap, useBodyScrollLock } from '../ui'
-import { type ModalSize } from './modalConfig'
+import { type ModalSize, MODAL_RESPONSIVE_CLASSES } from './modalConfig'
 
 // Типы для footer кнопок
 export interface ModalFooterButton {
@@ -62,10 +62,29 @@ export default function ModalShell({
 
   if (!isOpen) return null
 
-  const maxWidthClass = size === 'small' ? 'md:max-w-[400px]' : 'md:max-w-[740px]'
+  const maxWidthClass = MODAL_RESPONSIVE_CLASSES.modal.maxWidth[size]
 
+  /**
+   * Responsive поведение модального окна:
+   * 
+   * Mobile (< 768px):
+   * - Появляется снизу экрана (items-end)
+   * - Занимает всю ширину экрана (w-full)
+   * - Скругление только сверху (rounded-t-2xl)
+   * - Максимальная высота 90vh
+   * - Нет padding у контейнера (p-0)
+   * - Divider виден перед футером
+   * 
+   * Desktop (>= 768px):
+   * - Центрируется по вертикали и горизонтали (items-center)
+   * - Padding вокруг контейнера 1rem (p-4)
+   * - Скругление со всех сторон (rounded-2xl)
+   * - Максимальная ширина зависит от размера (400px или 740px)
+   * - Максимальная высота calc(100vh - 2rem)
+   * - Divider скрыт
+   */
   return (
-    <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4 overflow-hidden">
+    <div className={MODAL_RESPONSIVE_CLASSES.container.base}>
       {/* Background overlay */}
       <div
         className="fixed inset-0 bg-[#0a0a0a] opacity-30"
@@ -75,11 +94,11 @@ export default function ModalShell({
       {/* Modal */}
       <div
         ref={modalRef}
-        className={`relative bg-white border border-[#e5e5e5] border-solid rounded-t-2xl md:rounded-2xl w-full max-w-full ${maxWidthClass} max-h-[90vh] md:max-h-[calc(100vh-2rem)] flex flex-col`}
+        className={`${MODAL_RESPONSIVE_CLASSES.modal.base} ${maxWidthClass} ${MODAL_RESPONSIVE_CLASSES.modal.maxHeight}`}
       >
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto">
-          <div className="flex flex-col gap-10 p-4 md:p-6 w-full">
+          <div className={MODAL_RESPONSIVE_CLASSES.content.wrapper}>
             {/* Header */}
             {title && (
               <div className="flex flex-col gap-1.5 items-start w-full">
@@ -100,11 +119,11 @@ export default function ModalShell({
         </div>
 
         {/* Divider - только на мобильных */}
-        {footer && <div className="border-t border-[#e5e5e5] md:hidden"></div>}
+        {footer && <div className={MODAL_RESPONSIVE_CLASSES.divider.base}></div>}
 
         {/* Footer */}
         {footer && (
-          <div className={`flex flex-row gap-3 items-start w-full p-4 md:p-6 ${
+          <div className={`${MODAL_RESPONSIVE_CLASSES.footer.base} ${
             footer.primary && footer.secondary ? 'justify-end' : 
             footer.primary && footer.primary.fullWidth ? 'justify-stretch' :
             footer.secondary && footer.secondary.fullWidth ? 'justify-stretch' :
