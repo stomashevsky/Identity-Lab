@@ -2,7 +2,6 @@ import { CardIcon } from './CardIcon'
 import BadgeColor, { BadgeColorVariant } from './ui/BadgeColor'
 import IconContainer from './ui/IconContainer'
 import { IconName } from '../constants/icons'
-import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export interface CardProps {
   icon: IconName
@@ -15,7 +14,6 @@ export interface CardProps {
 }
 
 export default function Card({ icon, badge, badgeVariant = 'secondary', title, description, onClick, animationDelay = 0 }: CardProps) {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, delay: animationDelay })
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (onClick && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault()
@@ -25,19 +23,14 @@ export default function Card({ icon, badge, badgeVariant = 'secondary', title, d
 
   return (
     <div
-      ref={ref as React.RefObject<HTMLDivElement>}
       onClick={onClick}
       onKeyDown={handleKeyDown}
       tabIndex={onClick ? 0 : -1}
       role={onClick ? 'button' : undefined}
       className={`bg-white border border-[#e5e5e5] border-solid flex-[1_0_0] min-w-[280px] max-w-[400px] rounded-2xl overflow-hidden outline-none shadow-[0px_4px_6px_-1px_rgba(10,13,18,0.06),0px_2px_4px_-2px_rgba(10,13,18,0.06)] focus-visible:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)] transition-all duration-200 ease-spring-out transform-gpu ${
         onClick 
-          ? 'cursor-pointer hover:shadow-[0px_10px_15px_-3px_rgba(10,13,18,0.08),0px_4px_6px_-4px_rgba(10,13,18,0.06)] hover:scale-[1.02] active:scale-[0.98]' 
+          ? 'cursor-pointer hover:shadow-[0px_10px_15px_-3px_rgba(10,13,18,0.08),0px_4px_6px_-4px_rgba(10,13,18,0.06)]' 
           : ''
-      } ${
-        isVisible 
-          ? 'opacity-100 animate-card-enter' 
-          : 'opacity-0 scale-[0.96] translate-y-2'
       }`}
       style={{ borderWidth: '1px' }}
     >

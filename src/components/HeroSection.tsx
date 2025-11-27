@@ -3,22 +3,17 @@ import { SectionHeader } from './ui'
 import heroPhoneDesktop from '../assets/images/hero-phone-desktop.png'
 import heroPhoneMobile from '../assets/images/hero-phone-mobile.png'
 import { scrollToSection } from '../utils/scrollToSection'
-import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import { useParallax } from '../hooks/useParallax'
 
 export default function HeroSection() {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 })
   const { ref: parallaxRef, style: parallaxStyle } = useParallax({ speed: 0.15 })
 
   return (
     <section 
       id="hero" 
-      ref={ref as React.RefObject<HTMLElement>}
-      className={`bg-white flex flex-col gap-6 items-center overflow-hidden px-0 pt-32 md:pt-[164px] pb-16 md:pb-24 relative shrink-0 w-full transition-opacity duration-200 ${
-        isVisible ? 'opacity-100 animate-fade-in-scale' : 'opacity-0 scale-[0.96]'
-      }`}
+      className="bg-white flex flex-col gap-6 items-center overflow-hidden px-0 pt-32 md:pt-[164px] pb-16 md:pb-24 relative shrink-0 w-full"
     >
-      <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-center max-w-[1280px] px-6 py-0 relative shrink-0 w-full">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center md:items-center max-w-[1280px] px-6 py-0 relative shrink-0 w-full">
         <div className="flex flex-1 flex-col gap-6 md:gap-8 items-start relative shrink-0 w-full md:min-h-0 md:min-w-0">
           <SectionHeader
             label="Inside Folio Wallet"
@@ -57,7 +52,7 @@ export default function HeroSection() {
         {/* Hero Image */}
         <div 
           ref={parallaxRef as React.RefObject<HTMLDivElement>}
-          className="aspect-[240/240] flex-1 min-h-0 min-w-0 relative rounded-2xl shrink-0 w-[calc(100%+3rem)] max-w-[400px] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:mx-0 md:max-w-none md:w-auto transition-transform duration-200 ease-out"
+          className="aspect-[240/240] flex-1 min-h-0 min-w-0 relative rounded-2xl shrink-0 w-full max-w-[400px] md:left-auto md:translate-x-0 md:mx-0 md:max-w-none md:w-auto transition-transform duration-200 ease-out"
           style={parallaxStyle}
         >
           <img 

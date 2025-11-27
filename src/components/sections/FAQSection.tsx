@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import { SectionHeader, FAQItem, Button } from '../ui'
-import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 
 const FAQ_DATA = [
   {
@@ -37,7 +36,6 @@ const BACKGROUND_STYLE = {
 
 export default function FAQSection() {
   const [isFaqOpen, setIsFaqOpen] = useState<number | null>(0)
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 })
 
   const toggleFaq = (index: number) => {
     setIsFaqOpen(isFaqOpen === index ? null : index)
@@ -46,10 +44,7 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      ref={ref as React.RefObject<HTMLElement>}
-      className={`bg-white flex flex-col gap-6 items-center overflow-hidden px-0 py-16 md:py-24 relative shrink-0 w-full transition-opacity duration-200 ${
-        isVisible ? 'opacity-100 animate-fade-in-scale' : 'opacity-0 scale-[0.96]'
-      }`}
+      className="bg-white flex flex-col gap-6 items-center overflow-hidden px-0 py-16 md:py-24 relative shrink-0 w-full"
     >
       <div className="flex flex-col gap-10 md:gap-16 items-center max-w-[672px] px-6 py-0 relative shrink-0 w-full">
         <div className="flex flex-col gap-12 items-start relative shrink-0 w-full">

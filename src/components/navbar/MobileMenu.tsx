@@ -1,5 +1,4 @@
-import Logo from '../ui/Logo'
-import Button from '../ui/Button'
+import { LogoButton, Button } from '../ui'
 import xIcon from '../../assets/icons/x.svg'
 import { scrollToSection } from '../../utils/scrollToSection'
 
@@ -29,58 +28,64 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <div className="flex flex-col gap-6 items-center overflow-hidden px-0 py-6 w-full">
           <div className="flex flex-col gap-4 items-start justify-start w-full px-6 py-0 relative shrink-0">
             <div className="flex items-center justify-between relative shrink-0 w-full">
-              <button
+              <LogoButton
                 onClick={(e) => {
                   e.preventDefault()
                   e.stopPropagation()
                   handleNavClick('hero')
                 }}
-                className="flex items-center justify-center outline-none focus-visible:outline-none focus-visible:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]"
+                size={36}
                 aria-label="Go to top"
-              >
-                <Logo size={36} />
-              </button>
-              <button
+              />
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={onClose}
-                className="flex items-center justify-center rounded-md w-9 h-9 hover:bg-[#f5f5f5] transition-colors outline-none focus-visible:outline-none focus-visible:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]"
                 aria-label="Close menu"
+                className="p-0"
               >
                 <img src={xIcon} alt="Close" className="w-5 h-5" />
-              </button>
+              </Button>
             </div>
 
             <div className="flex flex-col gap-5 items-start justify-start pb-2.5 pt-0 px-0 relative shrink-0 w-full">
               <div className="flex flex-col gap-1 items-start justify-start relative shrink-0 w-full">
-                <button
+                <Button
+                  variant="ghost"
+                  fullWidth
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
                     handleNavClick('playground')
                   }}
-                  className="w-full flex items-center justify-start px-4 py-2 h-9 rounded-md font-medium leading-5 text-sm text-[#0a0a0a] bg-transparent hover:bg-[#f5f5f5] transition-colors focus-visible:outline-none focus-visible:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]"
+                  className="justify-start"
                 >
                   Playground
-                </button>
-                <button
+                </Button>
+                <Button
+                  variant="ghost"
+                  fullWidth
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
                     handleNavClick('how-it-works')
                   }}
-                  className="w-full flex items-center justify-start px-4 py-2 h-9 rounded-md font-medium leading-5 text-sm text-[#0a0a0a] bg-transparent hover:bg-[#f5f5f5] transition-colors focus-visible:outline-none focus-visible:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]"
+                  className="justify-start"
                 >
                   How it works
-                </button>
-                <button
+                </Button>
+                <Button
+                  variant="ghost"
+                  fullWidth
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
                     handleNavClick('faq')
                   }}
-                  className="w-full flex items-center justify-start px-4 py-2 h-9 rounded-md font-medium leading-5 text-sm text-[#0a0a0a] bg-transparent hover:bg-[#f5f5f5] transition-colors focus-visible:outline-none focus-visible:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]"
+                  className="justify-start"
                 >
                   FAQ
-                </button>
+                </Button>
               </div>
 
               <Button
