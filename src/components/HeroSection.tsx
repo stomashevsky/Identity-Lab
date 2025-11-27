@@ -1,12 +1,7 @@
 import Button from './ui/Button'
 import { SectionHeader } from './ui'
-import heroPhoneImage1 from '../assets/images/hero-phone-1.png'
-import heroPhoneImage2 from '../assets/images/hero-phone-2.png'
-import heroPhoneImage3 from '../assets/images/hero-phone-3.png'
-import heroPhoneImage4 from '../assets/images/hero-phone-4.png'
-import heroPhoneMobile1 from '../assets/images/hero-phone-mobile-1.png'
-import heroPhoneMobile2 from '../assets/images/hero-phone-mobile-2.png'
-import heroPhoneMobile3 from '../assets/images/hero-phone-mobile-3.png'
+import heroPhoneDesktop from '../assets/images/hero-phone-desktop.png'
+import heroPhoneMobile from '../assets/images/hero-phone-mobile.png'
 import { scrollToSection } from '../utils/scrollToSection'
 
 export default function HeroSection() {
@@ -50,45 +45,16 @@ export default function HeroSection() {
         
         {/* Hero Image */}
         <div className="aspect-[240/240] flex-1 min-h-0 min-w-0 relative rounded-2xl shrink-0 w-[calc(100%+3rem)] max-w-[400px] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:mx-0 md:max-w-none md:w-auto">
-          <div aria-hidden="true" className="absolute inset-0 pointer-events-none rounded-2xl">
-            {/* Desktop images - 4 stacked */}
-            <img 
-              alt="" 
-              className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full hidden md:block" 
-              src={heroPhoneImage1}
-            />
-            <img 
-              alt="" 
-              className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full hidden md:block" 
-              src={heroPhoneImage2}
-            />
-            <img 
-              alt="" 
-              className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full hidden md:block" 
-              src={heroPhoneImage3}
-            />
-            <img 
-              alt="" 
-              className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full hidden md:block" 
-              src={heroPhoneImage4}
-            />
-            {/* Mobile images - 3 stacked */}
-            <img 
-              alt="" 
-              className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full md:hidden" 
-              src={heroPhoneMobile1}
-            />
-            <img 
-              alt="" 
-              className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full md:hidden" 
-              src={heroPhoneMobile2}
-            />
-            <img 
-              alt="" 
-              className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full md:hidden" 
-              src={heroPhoneMobile3}
-            />
-          </div>
+          <img 
+            alt="" 
+            className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full md:hidden" 
+            src={heroPhoneMobile}
+          />
+          <img 
+            alt="" 
+            className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full hidden md:block" 
+            src={heroPhoneDesktop}
+          />
         </div>
       </div>
     </section>
