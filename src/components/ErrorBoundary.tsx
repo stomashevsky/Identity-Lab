@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react'
+import { Component, ErrorInfo, ReactNode } from 'react'
 import { Button } from './ui'
 
 interface Props {
@@ -33,7 +33,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // Log error to console in development
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.error('Error caught by ErrorBoundary:', error, errorInfo)
     }
     
@@ -63,7 +63,7 @@ export class ErrorBoundary extends Component<Props, State> {
             <p className="font-normal text-base text-[#737373]">
               We're sorry, but something unexpected happened. Please try refreshing the page.
             </p>
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <details className="mt-4 p-4 bg-[#f5f5f5] rounded-lg text-left w-full">
                 <summary className="font-medium text-sm text-[#0a0a0a] cursor-pointer mb-2">
                   Error details (development only)
