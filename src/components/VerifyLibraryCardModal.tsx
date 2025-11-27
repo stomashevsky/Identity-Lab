@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import VerifyConfirmationModal from './VerifyConfirmationModal'
 import LibraryCardVerifiedModal from './LibraryCardVerifiedModal'
-import { Switch, TextInput, Button, useFocusTrap, useBodyScrollLock } from './ui'
+import BaseModal from './modals/BaseModal'
+import { Switch, TextInput } from './ui'
 
 interface VerifyLibraryCardModalProps {
   isOpen: boolean
@@ -22,10 +23,6 @@ export default function VerifyLibraryCardModal({ isOpen, onClose }: VerifyLibrar
     status: true,
   })
 
-  const modalRef = useFocusTrap<HTMLDivElement>(isOpen && !isConfirmationOpen && !isVerifiedModalOpen)
-  useBodyScrollLock(isOpen)
-
-  if (!isOpen) return null
 
   const handleSwitchChange = (key: keyof typeof switches, checked: boolean) => {
     setSwitches((prev) => ({ ...prev, [key]: checked }))
@@ -54,25 +51,18 @@ export default function VerifyLibraryCardModal({ isOpen, onClose }: VerifyLibrar
   return (
     <>
       {!isVerifiedModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4 overflow-hidden">
-      <div
-        className="fixed inset-0 bg-[#0a0a0a] opacity-30"
-        onClick={onClose}
-      />
-      
-      <div ref={modalRef} className="relative bg-white border border-[#e5e5e5] border-solid rounded-t-2xl md:rounded-2xl w-full max-w-full md:max-w-[400px] max-h-[90vh] md:max-h-[calc(100vh-2rem)] flex flex-col">
-        {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="flex flex-col gap-10 p-4 md:p-6 items-start w-full">
-          <div className="flex flex-col gap-1.5 items-start w-full">
-            <h2 className="font-bold leading-none text-lg text-[#0a0a0a] w-full">
-              Library Card
-            </h2>
-            <p className="font-normal leading-5 text-sm text-[#737373] w-full">
-              Configure the verification request.
-            </p>
-          </div>
-
+        <BaseModal
+          isOpen={isOpen}
+          onClose={onClose}
+          title="Library Card"
+          description="Configure the verification request."
+          size="small"
+          disableFocusTrap={isConfirmationOpen || isVerifiedModalOpen}
+          footer={{
+            secondary: { label: 'Cancel', onClick: onClose },
+            primary: { label: 'Continue', onClick: handleContinue, disabled: !hasAtLeastOneEnabled },
+          }}
+        >
           <div className="flex flex-col gap-10 items-start w-full">
             <div className="flex flex-col gap-4 items-start w-full">
               <div className="flex flex-col gap-2 items-start w-full">
@@ -130,23 +120,7 @@ export default function VerifyLibraryCardModal({ isOpen, onClose }: VerifyLibrar
               />
             </div>
           </div>
-          </div>
-        </div>
-
-        {/* Divider - только на мобильных */}
-        <div className="border-t border-[#e5e5e5] md:hidden"></div>
-
-        {/* Footer */}
-        <div className="flex flex-row gap-3 items-start justify-end w-full p-4 md:p-6">
-          <Button variant="secondary" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" disabled={!hasAtLeastOneEnabled} onClick={handleContinue}>
-            Continue
-          </Button>
-        </div>
-      </div>
-      </div>
+        </BaseModal>
       )}
 
       <VerifyConfirmationModal
