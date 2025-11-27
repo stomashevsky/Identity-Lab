@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import { LogoButton, Button } from './ui'
 import menuIcon from '../assets/icons/menu.svg'
@@ -8,6 +8,7 @@ import DesktopNav from './navbar/DesktopNav'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const navbarRef = useRef<HTMLDivElement>(null)
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -15,12 +16,50 @@ export default function Navbar() {
 
   useBodyScrollLock(isMobileMenuOpen)
 
+  useEffect(() => {
+    const navbarElement = navbarRef.current
+    if (!navbarElement) return
+
+    const handleWheel = (e: WheelEvent) => {
+      // Check if target is a button or link element
+      const target = e.target as HTMLElement
+      const isInteractiveElement = 
+        target.tagName === 'BUTTON' || 
+        target.tagName === 'A' ||
+        (target.closest('button') && target.closest('button') === target) ||
+        (target.closest('a') && target.closest('a') === target)
+      
+      // If not over interactive element, scroll the page
+      if (!isInteractiveElement) {
+        e.preventDefault()
+        e.stopPropagation()
+        // Direct scroll manipulation for better compatibility
+        document.documentElement.scrollTop += e.deltaY
+        document.body.scrollTop += e.deltaY
+      }
+    }
+
+    // Use capture phase to intercept before it reaches navbar
+    navbarElement.addEventListener('wheel', handleWheel, { passive: false, capture: true })
+
+    return () => {
+      navbarElement.removeEventListener('wheel', handleWheel, { capture: true } as EventListenerOptions)
+    }
+  }, [])
+
   return (
     <>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
 
-      <div className="bg-white fixed top-0 left-0 right-0 shrink-0 w-full z-[50]">
-        <div className="flex flex-col gap-6 md:gap-0 items-center overflow-hidden px-0 py-3.5 md:py-4 w-full">
+      <div 
+        ref={navbarRef}
+        className="bg-white fixed top-0 left-0 right-0 shrink-0 w-full z-[50]"
+        style={{ 
+          overscrollBehavior: 'none',
+          touchAction: 'pan-y'
+        }}
+      >
+        <div className="flex flex-col gap-6 md:gap-0 items-center px-0 py-3.5 md:py-4 w-full">
           <div className="md:hidden flex flex-col gap-6 items-start justify-center w-full px-6 py-0 relative shrink-0">
             <div className="flex items-center justify-between relative shrink-0 w-full">
               <LogoButton
