@@ -1,9 +1,9 @@
 import ModalShell from './ModalShell'
 import VerificationTable from './VerificationTable'
 import checkmarkIcon from '../../assets/icons/circle-check.svg'
-import { VerificationData, EnabledFields } from '../../types/verification'
+import { VerificationData } from '../../types/verification'
 
-interface VerifiedModalBaseProps<T extends EnabledFields> {
+interface VerifiedModalBaseProps<T extends Record<string, boolean | undefined>> {
   isOpen: boolean
   onClose: () => void
   title: string
@@ -12,17 +12,17 @@ interface VerifiedModalBaseProps<T extends EnabledFields> {
 }
 
 /**
- * Базовый компонент для Verified модалок
- * Выносит общую логику фильтрации, сортировки и отображения результатов верификации
+ * Base component for Verified modals
+ * Extracts common logic for filtering, sorting and displaying verification results
  */
-export default function VerifiedModalBase<T extends EnabledFields>({
+export default function VerifiedModalBase<T extends Record<string, boolean | undefined>>({
   isOpen,
   onClose,
   title,
   allVerificationData,
   enabledFields,
 }: VerifiedModalBaseProps<T>) {
-  // Фильтруем данные по включенным полям
+  // Filter data by enabled fields
   let filteredData = allVerificationData.filter((item) => {
     if (item.enabledKey === 'fullName') {
       return enabledFields.fullName === true
@@ -33,7 +33,7 @@ export default function VerifiedModalBase<T extends EnabledFields>({
     return enabledFields[item.enabledKey as keyof typeof enabledFields] === true
   })
 
-  // Переупорядочиваем: fullName поля, затем photograph (если есть), затем остальные
+  // Reorder: fullName fields first, then photograph (if present), then others
   const firstNameIndex = filteredData.findIndex((item) => item.key === 'firstName')
   const lastNameIndex = filteredData.findIndex((item) => item.key === 'lastName')
   const photographIndex = filteredData.findIndex((item) => item.isPhoto)
@@ -47,7 +47,7 @@ export default function VerifiedModalBase<T extends EnabledFields>({
     )
     filteredData = [firstName, lastName, photograph, ...others]
   } else if (firstNameIndex !== -1 && lastNameIndex !== -1) {
-    // Если есть fullName, но нет photograph
+    // If fullName exists but no photograph
     const firstName = filteredData[firstNameIndex]
     const lastName = filteredData[lastNameIndex]
     const others = filteredData.filter((_, idx) => idx !== firstNameIndex && idx !== lastNameIndex)

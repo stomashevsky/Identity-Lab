@@ -58,42 +58,42 @@ export const MODAL_MAX_HEIGHT = {
 } as const
 
 /**
- * Responsive классы для модальных окон
- * Все медиаусловия для mobile/desktop собраны здесь для единой точки управления
+ * Responsive classes for modals
+ * All media conditions for mobile/desktop are collected here for a single point of control
  */
 export const MODAL_RESPONSIVE_CLASSES = {
-  // Контейнер модалки (wrapper)
+  // Modal container (wrapper)
   container: {
-    // Позиционирование: снизу на mobile, по центру на desktop
-    // Padding: нет на mobile, есть на desktop
+    // Positioning: bottom on mobile, centered on desktop
+    // Padding: none on mobile, present on desktop
     base: 'fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4 overflow-hidden',
   },
-  // Модальное окно
+  // Modal window
   modal: {
-    // Скругление: только сверху на mobile, со всех сторон на desktop
-    // Размеры: полная ширина на mobile, ограниченная на desktop
-    // Высота: 90vh на mobile, calc(100vh - 2rem) на desktop
+    // Border radius: top only on mobile, all sides on desktop
+    // Sizes: full width on mobile, limited on desktop
+    // Height: 90vh on mobile, calc(100vh - 2rem) on desktop
     base: 'relative bg-white border border-[#e5e5e5] border-solid rounded-t-2xl md:rounded-2xl w-full max-w-full flex flex-col',
     maxHeight: 'max-h-[90vh] md:max-h-[calc(100vh-2rem)]',
-    // Максимальная ширина в зависимости от размера (только на desktop)
+    // Max width depending on size (desktop only)
     maxWidth: {
       small: 'md:max-w-[400px]',
       large: 'md:max-w-[740px]',
     },
   },
-  // Контент модалки
+  // Modal content
   content: {
-    // Padding: меньше на mobile, больше на desktop
+    // Padding: less on mobile, more on desktop
     wrapper: 'flex flex-col gap-10 p-4 md:p-6 w-full',
   },
-  // Divider перед футером
+  // Divider before footer
   divider: {
-    // Виден только на mobile
+    // Visible only on mobile
     base: 'border-t border-[#e5e5e5] md:hidden',
   },
-  // Футер
+  // Footer
   footer: {
-    // Padding: меньше на mobile, больше на desktop
+    // Padding: less on mobile, more on desktop
     base: 'flex flex-row gap-3 items-start w-full p-4 md:p-6',
   },
 } as const

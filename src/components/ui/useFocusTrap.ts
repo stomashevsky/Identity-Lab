@@ -9,8 +9,8 @@ const FOCUSABLE_SELECTORS = [
   '[tabindex]:not([tabindex="-1"])',
 ].join(', ')
 
-export function useFocusTrap<T extends HTMLElement>(isActive: boolean): RefObject<T | null> {
-  const containerRef = useRef<T>(null)
+export function useFocusTrap<T extends HTMLElement>(isActive: boolean): RefObject<T> {
+  const containerRef = useRef<T>(null as unknown as T)
   const previousActiveElement = useRef<HTMLElement | null>(null)
 
   useEffect(() => {

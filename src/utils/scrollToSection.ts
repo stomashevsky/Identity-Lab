@@ -1,24 +1,24 @@
 /**
- * Утилита для прокрутки к секции страницы
- * Гарантированно разблокирует скролл и прокручивает к нужной секции
+ * Utility for scrolling to a page section
+ * Guarantees scroll unlock and scrolls to the target section
  */
 export function scrollToSection(sectionId: string) {
-  // Убираем # если есть
+  // Remove # if present
   const id = sectionId.startsWith('#') ? sectionId.slice(1) : sectionId
-  
-  // Полностью разблокируем скролл на всех уровнях
+
+  // Fully unlock scroll on all levels
   document.body.style.overflow = ''
   document.body.style.paddingRight = ''
   document.documentElement.style.overflow = ''
   document.documentElement.style.paddingRight = ''
   
-  // Также убираем overflow из всех возможных родителей
+  // Also remove overflow from all possible parents
   const root = document.getElementById('root')
   if (root) {
     root.style.overflow = ''
   }
   
-  // Функция для прокрутки
+  // Scroll function
   const performScroll = () => {
     const element = document.getElementById(id)
     if (!element) {
@@ -26,7 +26,7 @@ export function scrollToSection(sectionId: string) {
     }
     
     try {
-      // Используем scrollIntoView - он автоматически учитывает scroll-margin-top из CSS
+      // Use scrollIntoView - it automatically accounts for scroll-margin-top from CSS
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
@@ -35,8 +35,12 @@ export function scrollToSection(sectionId: string) {
       
       return true
     } catch (error) {
-      console.error('Error scrolling to section:', error)
-      // Запасной вариант - используем window.scrollTo
+      // Silently handle scroll errors in production
+      if (import.meta.env.DEV) {
+        // eslint-disable-next-line no-console
+        console.warn('Error scrolling to section:', error)
+      }
+      // Fallback - use window.scrollTo
       try {
         const rect = element.getBoundingClientRect()
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop
@@ -50,24 +54,28 @@ export function scrollToSection(sectionId: string) {
         })
         return true
       } catch (fallbackError) {
-        console.error('Fallback scroll also failed:', fallbackError)
+        // Silently handle scroll errors in production
+        if (import.meta.env.DEV) {
+          // eslint-disable-next-line no-console
+          console.warn('Fallback scroll also failed:', fallbackError)
+        }
         return false
       }
     }
   }
   
-  // Пытаемся найти и прокрутить сразу
+  // Try to find and scroll immediately
   if (performScroll()) {
     return
   }
-  
-  // Если не нашли, пробуем через requestAnimationFrame
+
+  // If not found, try via requestAnimationFrame
   requestAnimationFrame(() => {
     if (!performScroll()) {
-      // Если все еще не нашли, ждем немного и пробуем еще раз
+      // If still not found, wait a bit and try again
       setTimeout(() => {
         if (!performScroll()) {
-          // Последняя попытка - используем только scrollIntoView
+          // Last attempt - use only scrollIntoView
           const element = document.getElementById(id)
           if (element) {
             element.scrollIntoView({

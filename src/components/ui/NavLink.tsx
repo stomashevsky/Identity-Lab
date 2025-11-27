@@ -8,7 +8,7 @@ interface NavLinkProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'cl
   href?: string
 }
 
-export default function NavLink({ children, className = '', active = false, href, onClick, ...props }: NavLinkProps) {
+export default function NavLink({ children, className = '', active: _active = false, href, onClick, ...props }: NavLinkProps) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (href) {
       e.preventDefault()

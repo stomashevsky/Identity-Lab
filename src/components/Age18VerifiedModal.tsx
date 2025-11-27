@@ -1,6 +1,6 @@
 import VerifiedModalBase from './modals/VerifiedModalBase'
-import { VerificationData } from '../../types/verification'
-import { Age18EnabledFields } from '../../types/documents'
+import { VerificationData } from '../types/verification'
+import { Age18EnabledFields } from '../types/documents'
 
 interface Age18VerifiedModalProps {
   isOpen: boolean
@@ -9,7 +9,7 @@ interface Age18VerifiedModalProps {
 }
 
 export default function Age18VerifiedModal({ isOpen, onClose, enabledFields }: Age18VerifiedModalProps) {
-  // Все доступные данные
+  // All available data
   const allVerificationData: VerificationData = [
     { key: 'confirmedAge', label: 'Confirmed Age', value: '18+', enabledKey: 'confirmedAge', isPhoto: false },
     { key: 'cardNumber', label: 'Card Number', value: 'A7654321', enabledKey: 'cardNumber', isPhoto: false },

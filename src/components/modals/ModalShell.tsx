@@ -2,7 +2,7 @@ import { ReactNode, useEffect } from 'react'
 import { Button, useFocusTrap, useBodyScrollLock } from '../ui'
 import { type ModalSize, MODAL_RESPONSIVE_CLASSES } from './modalConfig'
 
-// Типы для footer кнопок
+// Types for footer buttons
 export interface ModalFooterButton {
   label: string
   onClick: () => void
@@ -26,8 +26,8 @@ export interface ModalShellProps {
   size?: ModalSize
   children: ReactNode
   footer?: ModalFooter
-  disableFocusTrap?: boolean // Для случаев с вложенными модалками
-  disableEscapeClose?: boolean // Отключить закрытие по ESC
+  disableFocusTrap?: boolean // For nested modals
+  disableEscapeClose?: boolean // Disable ESC key close
 }
 
 export default function ModalShell({
@@ -44,7 +44,7 @@ export default function ModalShell({
   const modalRef = useFocusTrap<HTMLDivElement>(isOpen && !disableFocusTrap)
   useBodyScrollLock(isOpen)
 
-  // Обработка закрытия по ESC
+  // Handle ESC key close
   useEffect(() => {
     if (!isOpen || disableEscapeClose) return
 
@@ -65,23 +65,23 @@ export default function ModalShell({
   const maxWidthClass = MODAL_RESPONSIVE_CLASSES.modal.maxWidth[size]
 
   /**
-   * Responsive поведение модального окна:
+   * Responsive modal behavior:
    * 
    * Mobile (< 768px):
-   * - Появляется снизу экрана (items-end)
-   * - Занимает всю ширину экрана (w-full)
-   * - Скругление только сверху (rounded-t-2xl)
-   * - Максимальная высота 90vh
-   * - Нет padding у контейнера (p-0)
-   * - Divider виден перед футером
+   * - Appears from bottom (items-end)
+   * - Full screen width (w-full)
+   * - Rounded only on top (rounded-t-2xl)
+   * - Max height 90vh
+   * - No container padding (p-0)
+   * - Divider visible before footer
    * 
    * Desktop (>= 768px):
-   * - Центрируется по вертикали и горизонтали (items-center)
-   * - Padding вокруг контейнера 1rem (p-4)
-   * - Скругление со всех сторон (rounded-2xl)
-   * - Максимальная ширина зависит от размера (400px или 740px)
-   * - Максимальная высота calc(100vh - 2rem)
-   * - Divider скрыт
+   * - Centered vertically and horizontally (items-center)
+   * - Container padding 1rem (p-4)
+   * - Rounded on all sides (rounded-2xl)
+   * - Max width depends on size (400px or 740px)
+   * - Max height calc(100vh - 2rem)
+   * - Divider hidden
    */
   return (
     <div className={MODAL_RESPONSIVE_CLASSES.container.base}>

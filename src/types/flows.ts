@@ -1,27 +1,27 @@
 /**
- * Типы для флоу выпуска и верификации документов
+ * Types for document issuance and verification flows
  */
 
 import { FlowMode } from '../constants/flows'
 import { DocumentType } from '../constants/documents'
 
 /**
- * Шаги в флоу выпуска документа
+ * Steps in document issuance flow
  */
-export type IssueFlowStep = 
-  | 'form'      // Форма заполнения данных
-  | 'confirmation' // Подтверждение и QR код
+export type IssueFlowStep =
+  | 'form' // Data entry form
+  | 'confirmation' // Confirmation and QR code
 
 /**
- * Шаги в флоу верификации документа
+ * Steps in document verification flow
  */
 export type VerifyFlowStep =
-  | 'configuration'  // Настройка запроса верификации
-  | 'confirmation'  // Подтверждение и QR код
-  | 'verified'      // Результаты верификации
+  | 'configuration' // Verification request configuration
+  | 'confirmation' // Confirmation and QR code
+  | 'verified' // Verification results
 
 /**
- * Состояние модалки в флоу
+ * Modal state in flow
  */
 export interface FlowModalState {
   documentType: DocumentType

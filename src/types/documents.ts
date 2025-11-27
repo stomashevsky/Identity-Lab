@@ -6,7 +6,7 @@
 /**
  * Поля для Digital Identity
  */
-export interface DigitalIdentityEnabledFields {
+export interface DigitalIdentityEnabledFields extends Record<string, boolean | undefined> {
   fullName?: boolean
   dateOfBirth?: boolean
   photograph?: boolean
@@ -24,7 +24,7 @@ export interface DigitalIdentityEnabledFields {
 /**
  * Поля для Student ID
  */
-export interface StudentIdEnabledFields {
+export interface StudentIdEnabledFields extends Record<string, boolean | undefined> {
   fullName?: boolean
   photograph?: boolean
   dateOfBirth?: boolean
@@ -39,7 +39,7 @@ export interface StudentIdEnabledFields {
 /**
  * Поля для Driver's License
  */
-export interface DriversLicenseEnabledFields {
+export interface DriversLicenseEnabledFields extends Record<string, boolean | undefined> {
   fullName?: boolean
   dateOfBirth?: boolean
   photograph?: boolean
@@ -55,7 +55,7 @@ export interface DriversLicenseEnabledFields {
 /**
  * Поля для Age 18+
  */
-export interface Age18EnabledFields {
+export interface Age18EnabledFields extends Record<string, boolean | undefined> {
   confirmedAge?: boolean
   cardNumber?: boolean
   issuingAuthority?: boolean
@@ -64,7 +64,7 @@ export interface Age18EnabledFields {
 /**
  * Поля для Health Insurance Card
  */
-export interface HealthInsuranceEnabledFields {
+export interface HealthInsuranceEnabledFields extends Record<string, boolean | undefined> {
   fullName?: boolean
   dateOfBirth?: boolean
   cardNumber?: boolean
@@ -78,7 +78,7 @@ export interface HealthInsuranceEnabledFields {
 /**
  * Поля для Proof of Address
  */
-export interface ProofOfAddressEnabledFields {
+export interface ProofOfAddressEnabledFields extends Record<string, boolean | undefined> {
   fullName?: boolean
   residentialAddress?: boolean
   cardNumber?: boolean
@@ -90,7 +90,7 @@ export interface ProofOfAddressEnabledFields {
 /**
  * Поля для Membership Card
  */
-export interface MembershipCardEnabledFields {
+export interface MembershipCardEnabledFields extends Record<string, boolean | undefined> {
   fullName?: boolean
   dateOfBirth?: boolean
   cardNumber?: boolean
@@ -104,7 +104,7 @@ export interface MembershipCardEnabledFields {
 /**
  * Поля для Library Card
  */
-export interface LibraryCardEnabledFields {
+export interface LibraryCardEnabledFields extends Record<string, boolean | undefined> {
   fullName?: boolean
   dateOfBirth?: boolean
   cardNumber?: boolean

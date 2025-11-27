@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 interface IconContainerProps {
   children: ReactNode
-  size?: number // размер в пикселях (по умолчанию 40px)
+  size?: number // size in pixels (default 40px)
   className?: string
 }
 

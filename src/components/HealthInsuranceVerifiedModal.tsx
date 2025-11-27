@@ -1,6 +1,6 @@
 import VerifiedModalBase from './modals/VerifiedModalBase'
-import { VerificationData } from '../../types/verification'
-import { HealthInsuranceEnabledFields } from '../../types/documents'
+import { VerificationData } from '../types/verification'
+import { HealthInsuranceEnabledFields } from '../types/documents'
 
 interface HealthInsuranceVerifiedModalProps {
   isOpen: boolean
@@ -9,7 +9,7 @@ interface HealthInsuranceVerifiedModalProps {
 }
 
 export default function HealthInsuranceVerifiedModal({ isOpen, onClose, enabledFields }: HealthInsuranceVerifiedModalProps) {
-  // Все доступные данные
+  // All available data
   const allVerificationData: VerificationData = [
     { key: 'firstName', label: 'First Name', value: 'Carmen', enabledKey: 'fullName', isPhoto: false },
     { key: 'lastName', label: 'Last Name', value: 'Muestra', enabledKey: 'fullName', isPhoto: false },

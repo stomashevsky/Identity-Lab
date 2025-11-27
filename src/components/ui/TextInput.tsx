@@ -1,28 +1,25 @@
 import { useState } from 'react'
 import { INPUT_BASE_FOCUS_STYLES, INPUT_FOCUS_CLASSES } from './inputStyles'
 
-interface TextInputProps {
+interface TextInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'onBlur' | 'value' | 'defaultValue'> {
   defaultValue?: string
   value?: string
-  placeholder?: string
-  className?: string
-  autoComplete?: string
   onChange?: (value: string) => void
-  onBlur?: () => void
-  disabled?: boolean
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   error?: boolean
 }
 
-export default function TextInput({ 
-  defaultValue = '', 
+export default function TextInput({
+  defaultValue = '',
   value: controlledValue,
-  placeholder, 
-  className = '', 
+  placeholder,
+  className = '',
   autoComplete = 'off',
   onChange,
   onBlur,
   disabled = false,
-  error = false
+  error = false,
+  ...restProps
 }: TextInputProps) {
   const [internalValue, setInternalValue] = useState(defaultValue)
   const isControlled = controlledValue !== undefined
@@ -36,11 +33,11 @@ export default function TextInput({
     onChange?.(newValue)
   }
 
-  const handleBlur = () => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (!isControlled && value.trim() === '' && defaultValue) {
       setInternalValue(defaultValue)
     }
-    onBlur?.()
+    onBlur?.(e)
   }
 
   const focusStyles = error ? INPUT_FOCUS_CLASSES.error : INPUT_FOCUS_CLASSES.default
@@ -56,6 +53,7 @@ export default function TextInput({
       autoComplete={autoComplete}
       inputMode="text"
       disabled={disabled}
+      {...restProps}
     />
   )
 }

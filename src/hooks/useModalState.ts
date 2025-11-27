@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react'
  * Хук для централизованного управления состоянием множества модалок
  * Заменяет множественные useState для каждой модалки на единое управление
  */
-export function useModalState<T extends string>(modalTypes: T[]) {
+export function useModalState<T extends string>(_modalTypes: T[]) {
   const [openModals, setOpenModals] = useState<Set<T>>(new Set())
 
   const openModal = useCallback((type: T) => {

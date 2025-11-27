@@ -1,24 +1,21 @@
 import { useState, useMemo } from 'react'
+
 import Card from './Card'
 import { cardData } from './cardData'
 import { verifyCardData } from './verifyCardData'
-import { useModalState } from '../hooks/useModalState'
+import FlowTabs from './Issue/FlowTabs'
 import { getModalComponent, type DocumentType, type ModalMode } from './Issue/modalMapping'
-import { DOCUMENT_TYPE_VALUES, FLOW_MODES } from '../constants'
 import { SectionHeader } from './ui'
+import { useModalState } from '../hooks/useModalState'
+import { DOCUMENT_TYPE_VALUES, FLOW_MODES } from '../constants'
 
 export default function Issue() {
   const [activeTab, setActiveTab] = useState<ModalMode>(FLOW_MODES.ISSUE)
-  
-  // Список всех типов документов для управления модалками
-  const documentTypes: DocumentType[] = DOCUMENT_TYPE_VALUES
-  
-  // Централизованное управление состоянием всех модалок
-  const { openModal, closeModal, isOpen } = useModalState<DocumentType>(documentTypes)
 
+  const documentTypes: DocumentType[] = DOCUMENT_TYPE_VALUES
+  const { openModal, closeModal, isOpen } = useModalState<DocumentType>(documentTypes)
   const currentCardData = activeTab === FLOW_MODES.ISSUE ? cardData : verifyCardData
 
-  // Создаем маппинг обработчиков кликов для карточек
   const cardClickHandlers = useMemo(() => {
     const handlers: Partial<Record<DocumentType, () => void>> = {}
     currentCardData.forEach((card) => {
@@ -28,7 +25,6 @@ export default function Issue() {
     return handlers
   }, [currentCardData, openModal])
 
-  // Получаем все открытые модалки для рендеринга
   const openModalsList = useMemo(() => {
     return documentTypes
       .filter((type) => isOpen(type))
@@ -39,8 +35,6 @@ export default function Issue() {
       }))
   }, [documentTypes, isOpen, activeTab])
 
-
-
   return (
     <>
       <div className="flex flex-col gap-10 items-center w-full">
@@ -50,33 +44,7 @@ export default function Issue() {
           description="Issue demo documents and test verification flows."
         />
 
-          {/* Toggle Tabs */}
-          <div className="bg-[#e5e5e5] flex items-center w-full max-w-[400px] overflow-hidden p-[3px] rounded-xl gap-[4px]">
-            <button
-              onClick={() => setActiveTab(FLOW_MODES.ISSUE)}
-              className={`flex-[1_0_0] inline-flex items-center justify-center py-[5px] px-[8px] gap-[8px] rounded-[9px] border border-[rgba(255,255,255,0)] transition-all outline-none focus-visible:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)] ${
-                activeTab === FLOW_MODES.ISSUE
-                  ? 'bg-white shadow-[0px_4px_6px_-1px_rgba(10,13,18,0.06),0px_2px_4px_-2px_rgba(10,13,18,0.06)]'
-                  : 'bg-transparent hover:bg-black/5'
-              }`}
-            >
-              <p className={`font-medium leading-5 text-sm text-[#0a0a0a] text-center ${activeTab !== FLOW_MODES.ISSUE ? 'opacity-75' : ''}`}>
-                {FLOW_MODES.ISSUE}
-              </p>
-            </button>
-            <button
-              onClick={() => setActiveTab(FLOW_MODES.VERIFY)}
-              className={`flex-[1_0_0] inline-flex items-center justify-center py-[5px] px-[8px] gap-[8px] rounded-[9px] border border-[rgba(255,255,255,0)] transition-all outline-none focus-visible:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)] ${
-                activeTab === FLOW_MODES.VERIFY
-                  ? 'bg-white shadow-[0px_4px_6px_-1px_rgba(10,13,18,0.06),0px_2px_4px_-2px_rgba(10,13,18,0.06)]'
-                  : 'bg-transparent hover:bg-black/5'
-              }`}
-            >
-              <p className={`font-medium leading-5 text-sm text-[#0a0a0a] text-center ${activeTab !== FLOW_MODES.VERIFY ? 'opacity-75' : ''}`}>
-                {FLOW_MODES.VERIFY}
-              </p>
-            </button>
-          </div>
+        <FlowTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
           {/* Cards Grid */}
           <div className="flex flex-wrap gap-6 items-start justify-center w-full">
@@ -98,7 +66,7 @@ export default function Issue() {
           </div>
         </div>
 
-      {/* Динамический рендеринг модалок через маппинг */}
+      {/* Dynamic modal rendering via mapping */}
       {openModalsList.map(({ type, Component }) => (
         <Component
           key={`${type}-${activeTab}`}

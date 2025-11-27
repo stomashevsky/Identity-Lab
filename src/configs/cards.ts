@@ -7,7 +7,6 @@ import { CardProps } from '../components/Card'
 import { DOCUMENT_TYPES } from '../constants/documents'
 import { ICON_NAMES } from '../constants/icons'
 import { BADGE_LABELS } from '../constants/badges'
-import { BadgeColorVariant } from '../components/ui/BadgeColor'
 
 /**
  * Тип для конфигурации карточки

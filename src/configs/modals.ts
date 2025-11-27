@@ -24,6 +24,12 @@ import VerifyMembershipCardModal from '../components/VerifyMembershipCardModal'
 import VerifyLibraryCardModal from '../components/VerifyLibraryCardModal'
 
 /**
+ * Реэкспорт типов для удобства
+ */
+export type { DocumentType } from '../constants/documents'
+export type { FlowMode } from '../constants/flows'
+
+/**
  * Базовые пропсы для модальных окон
  */
 export interface BaseModalProps {
