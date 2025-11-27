@@ -99,8 +99,8 @@ export default function StudentIdVerifiedModal({ isOpen, onClose, enabledFields 
                   index === verificationData.length - 1 ? 'border-b-0' : ''
                 } ${item.isPhoto ? 'items-start' : 'items-center'}`}
               >
-                <div className="flex flex-1 flex-col font-normal justify-center min-h-px min-w-px overflow-hidden relative shrink-0 text-[#737373] text-sm whitespace-nowrap">
-                  <p className="leading-5 overflow-hidden text-[14px]">
+                <div className="flex flex-1 flex-col font-normal justify-center min-h-px min-w-px relative shrink-0 text-[#737373] text-sm">
+                  <p className="leading-5 text-[14px]">
                     {item.label}
                   </p>
                 </div>
