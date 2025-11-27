@@ -2,7 +2,8 @@ import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
 import ModalShell from './modals/ModalShell'
 import { MODAL_TWO_COLUMN_LAYOUT } from './modals/modalConfig'
-import { TextInput, DateInput } from './ui'
+import { TextInput, DateInput, FormField, INPUT_BASE_CLASSES } from './ui'
+import { useInputDefaultValue } from '../hooks/useInputDefaultValue'
 
 interface LibraryCardModalProps {
   isOpen: boolean
@@ -11,6 +12,7 @@ interface LibraryCardModalProps {
 
 export default function LibraryCardModal({ isOpen, onClose }: LibraryCardModalProps) {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false)
+  const handleCardNumberBlur = useInputDefaultValue('L7654321')
 
   const handleContinue = () => {
     setIsConfirmationOpen(true)
@@ -41,44 +43,31 @@ export default function LibraryCardModal({ isOpen, onClose }: LibraryCardModalPr
       >
         <div className={MODAL_TWO_COLUMN_LAYOUT}>
           <div className="flex flex-1 flex-col gap-4 items-start w-full">
-            <div className="flex flex-col gap-2 items-start w-full">
-              <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-                First Name
-              </label>
+            <FormField label="First Name">
               <TextInput
                 defaultValue="Carmen"
                 placeholder="First Name"
-                className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
+                className={INPUT_BASE_CLASSES}
               />
-            </div>
-            <div className="flex flex-col gap-2 items-start w-full">
-              <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-                Last Name
-              </label>
+            </FormField>
+            <FormField label="Last Name">
               <TextInput
                 defaultValue="Muestra"
                 placeholder="Last Name"
-                className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
+                className={INPUT_BASE_CLASSES}
               />
-            </div>
-            <div className="flex flex-col gap-2 items-start w-full">
-              <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-                Date of Birth
-              </label>
+            </FormField>
+            <FormField label="Date of Birth">
               <DateInput
                 defaultValue="01/01/1980"
-                className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
+                className={INPUT_BASE_CLASSES}
               />
-            </div>
+            </FormField>
           </div>
 
           <div className="flex flex-1 flex-col gap-4 items-start w-full">
-            <div className="flex flex-col gap-2 items-start w-full">
-              <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-                Card Number
-              </label>
-              <input
-                type="text"
+            <FormField label="Card Number">
+              <TextInput
                 defaultValue="L7654321"
                 placeholder="Card Number"
                 autoComplete="one-time-code"
@@ -86,62 +75,43 @@ export default function LibraryCardModal({ isOpen, onClose }: LibraryCardModalPr
                 inputMode="text"
                 data-1p-ignore
                 data-lpignore="true"
-                className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
-                onBlur={(e) => {
-                  if (e.target.value.trim() === '') {
-                    e.target.value = 'L7654321'
-                  }
-                }}
+                className={INPUT_BASE_CLASSES}
+                onBlur={handleCardNumberBlur}
               />
-            </div>
-            <div className="flex flex-col gap-2 items-start w-full">
-              <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-                Issuing Authority
-              </label>
+            </FormField>
+            <FormField label="Issuing Authority">
               <TextInput
                 defaultValue="Library"
                 placeholder="Issuing Authority"
-                className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
+                className={INPUT_BASE_CLASSES}
               />
-            </div>
-            <div className="flex flex-col gap-2 items-start w-full">
-              <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-                Issued On
-              </label>
+            </FormField>
+            <FormField label="Issued On">
               <DateInput
                 defaultValue="15/12/2025"
-                className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
+                className={INPUT_BASE_CLASSES}
               />
-            </div>
-            <div className="flex flex-col gap-2 items-start w-full">
-              <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-                Expiry Date
-              </label>
+            </FormField>
+            <FormField label="Expiry Date">
               <DateInput
                 defaultValue="15/12/2035"
-                className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
+                className={INPUT_BASE_CLASSES}
               />
-            </div>
-            <div className="flex flex-col gap-2 items-start w-full">
-              <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-                Membership Type
-              </label>
+            </FormField>
+            <FormField label="Membership Type">
               <TextInput
                 defaultValue="Student"
                 placeholder="Membership Type"
-                className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
+                className={INPUT_BASE_CLASSES}
               />
-            </div>
-            <div className="flex flex-col gap-2 items-start w-full">
-              <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-                Status
-              </label>
+            </FormField>
+            <FormField label="Status">
               <TextInput
                 defaultValue="Active"
                 placeholder="Status"
-                className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
+                className={INPUT_BASE_CLASSES}
               />
-            </div>
+            </FormField>
           </div>
         </div>
       </ModalShell>

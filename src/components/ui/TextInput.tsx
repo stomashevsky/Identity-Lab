@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { INPUT_BASE_FOCUS_STYLES, INPUT_FOCUS_CLASSES } from './inputStyles'
 
 interface TextInputProps {
   defaultValue?: string
@@ -42,15 +43,7 @@ export default function TextInput({
     onBlur?.()
   }
 
-  // Base focus styles matching Button component pattern
-  const baseFocusStyles = 'outline-none focus-visible:outline-none transition-all duration-150'
-  
-  // Focus styles: border color and shadow (matching Figma design)
-  // Using focus-visible like Button component for better accessibility
-  // Also including focus: to override existing focus: styles in forms
-  const focusStyles = error
-    ? 'focus:border-[#dc2626] focus:shadow-[0px_0px_0px_3px_rgba(220,38,38,0.5)] focus-visible:border-[#dc2626] focus-visible:shadow-[0px_0px_0px_3px_rgba(220,38,38,0.5)]'
-    : 'focus:border-[#a3a3a3] focus:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)] focus-visible:border-[#a3a3a3] focus-visible:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]'
+  const focusStyles = error ? INPUT_FOCUS_CLASSES.error : INPUT_FOCUS_CLASSES.default
 
   return (
     <input
@@ -59,7 +52,7 @@ export default function TextInput({
       onChange={handleChange}
       onBlur={handleBlur}
       placeholder={placeholder}
-      className={`${baseFocusStyles} ${className} ${focusStyles}`}
+      className={`${INPUT_BASE_FOCUS_STYLES} ${className} ${focusStyles}`}
       autoComplete={autoComplete}
       inputMode="text"
       disabled={disabled}

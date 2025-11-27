@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
 import ModalShell from './modals/ModalShell'
-import { TextInput } from './ui'
+import { TextInput, FormField, INPUT_BASE_CLASSES } from './ui'
+import { useInputDefaultValue } from '../hooks/useInputDefaultValue'
 
 interface Age18ModalProps {
   isOpen: boolean
@@ -10,6 +11,7 @@ interface Age18ModalProps {
 
 export default function Age18Modal({ isOpen, onClose }: Age18ModalProps) {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false)
+  const handleCardNumberBlur = useInputDefaultValue('A7654321')
 
   const handleContinue = () => {
     setIsConfirmationOpen(true)
@@ -39,12 +41,8 @@ export default function Age18Modal({ isOpen, onClose }: Age18ModalProps) {
         }}
       >
         <div className="flex flex-col gap-4 items-start w-full">
-          <div className="flex flex-col gap-2 items-start w-full">
-            <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-              Card Number
-            </label>
-            <input
-              type="text"
+          <FormField label="Card Number">
+            <TextInput
               defaultValue="A7654321"
               placeholder="Card Number"
               autoComplete="one-time-code"
@@ -52,24 +50,17 @@ export default function Age18Modal({ isOpen, onClose }: Age18ModalProps) {
               inputMode="text"
               data-1p-ignore
               data-lpignore="true"
-              className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
-              onBlur={(e) => {
-                if (e.target.value.trim() === '') {
-                  e.target.value = 'A7654321'
-                }
-              }}
+              className={INPUT_BASE_CLASSES}
+              onBlur={handleCardNumberBlur}
             />
-          </div>
-          <div className="flex flex-col gap-2 items-start w-full">
-            <label className="font-medium leading-5 text-sm text-[#0a0a0a]">
-              Issuing Authority
-            </label>
+          </FormField>
+          <FormField label="Issuing Authority">
             <TextInput
               defaultValue="ID Authority"
               placeholder="Issuing Authority"
-              className="bg-white border border-[#e5e5e5] border-solid box-border flex gap-1 h-9 items-center px-3 py-1 rounded-md w-full text-sm leading-5 text-[#0a0a0a] outline-none focus:border-[#0a0a0a]"
+              className={INPUT_BASE_CLASSES}
             />
-          </div>
+          </FormField>
         </div>
       </ModalShell>
 
