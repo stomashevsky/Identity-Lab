@@ -21,22 +21,13 @@ export default function Navbar() {
     if (!navbarElement) return
 
     const handleWheel = (e: WheelEvent) => {
-      // Check if target is a button or link element
-      const target = e.target as HTMLElement
-      const isInteractiveElement = 
-        target.tagName === 'BUTTON' || 
-        target.tagName === 'A' ||
-        (target.closest('button') && target.closest('button') === target) ||
-        (target.closest('a') && target.closest('a') === target)
-      
-      // If not over interactive element, scroll the page
-      if (!isInteractiveElement) {
-        e.preventDefault()
-        e.stopPropagation()
-        // Direct scroll manipulation for better compatibility
-        document.documentElement.scrollTop += e.deltaY
-        document.body.scrollTop += e.deltaY
-      }
+      // Always scroll the page when wheel event occurs over navbar
+      // Buttons and links will still be clickable, but wheel will scroll the page
+      e.preventDefault()
+      e.stopPropagation()
+      // Direct scroll manipulation for better compatibility
+      document.documentElement.scrollTop += e.deltaY
+      document.body.scrollTop += e.deltaY
     }
 
     // Use capture phase to intercept before it reaches navbar
