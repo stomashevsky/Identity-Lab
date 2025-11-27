@@ -1,19 +1,11 @@
 import VerifiedModalBase from './modals/VerifiedModalBase'
 import { VerificationData } from '../../types/verification'
+import { HealthInsuranceEnabledFields } from '../../types/documents'
 
 interface HealthInsuranceVerifiedModalProps {
   isOpen: boolean
   onClose: () => void
-  enabledFields: {
-    fullName?: boolean
-    dateOfBirth?: boolean
-    cardNumber?: boolean
-    issuingAuthority?: boolean
-    issuedOn?: boolean
-    expiryDate?: boolean
-    coverageType?: boolean
-    status?: boolean
-  }
+  enabledFields: HealthInsuranceEnabledFields
 }
 
 export default function HealthInsuranceVerifiedModal({ isOpen, onClose, enabledFields }: HealthInsuranceVerifiedModalProps) {

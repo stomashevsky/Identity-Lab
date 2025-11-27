@@ -3,6 +3,7 @@ import VerifyConfirmationModal from './VerifyConfirmationModal'
 import ProofOfAddressVerifiedModal from './ProofOfAddressVerifiedModal'
 import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface VerifyProofOfAddressModalProps {
   isOpen: boolean
@@ -115,7 +116,7 @@ export default function VerifyProofOfAddressModal({ isOpen, onClose }: VerifyPro
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onAutoClose={handleAutoClose}
-        documentType="Proof of Address"
+        documentType={DOCUMENT_TYPES.PROOF_OF_ADDRESS}
       />
 
       <ProofOfAddressVerifiedModal

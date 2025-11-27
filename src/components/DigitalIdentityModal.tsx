@@ -4,6 +4,7 @@ import ModalShell from './modals/ModalShell'
 import { MODAL_TWO_COLUMN_LAYOUT } from './modals/modalConfig'
 import { TextInput, DateInput, FormField, INPUT_BASE_CLASSES } from './ui'
 import { useInputDefaultValue } from '../hooks/useInputDefaultValue'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface DigitalIdentityModalProps {
   isOpen: boolean
@@ -143,7 +144,7 @@ export default function DigitalIdentityModal({ isOpen, onClose }: DigitalIdentit
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onBack={handleBack}
-        documentType="Digital Identity"
+        documentType={DOCUMENT_TYPES.DIGITAL_IDENTITY}
       />
     </>
   )

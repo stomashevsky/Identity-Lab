@@ -3,6 +3,7 @@ import VerifyConfirmationModal from './VerifyConfirmationModal'
 import MembershipCardVerifiedModal from './MembershipCardVerifiedModal'
 import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface VerifyMembershipCardModalProps {
   isOpen: boolean
@@ -127,7 +128,7 @@ export default function VerifyMembershipCardModal({ isOpen, onClose }: VerifyMem
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onAutoClose={handleAutoClose}
-        documentType="Membership Card"
+        documentType={DOCUMENT_TYPES.MEMBERSHIP_CARD}
       />
 
       <MembershipCardVerifiedModal

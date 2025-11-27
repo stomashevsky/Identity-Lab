@@ -2,6 +2,7 @@ import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
 import ModalShell from './modals/ModalShell'
 import { TextInput, FormField, INPUT_BASE_CLASSES } from './ui'
+import { DOCUMENT_TYPES } from '../constants/documents'
 import { useInputDefaultValue } from '../hooks/useInputDefaultValue'
 
 interface Age18ModalProps {
@@ -68,7 +69,7 @@ export default function Age18Modal({ isOpen, onClose }: Age18ModalProps) {
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onBack={handleBack}
-        documentType="Age 18+"
+        documentType={DOCUMENT_TYPES.AGE_18}
       />
     </>
   )

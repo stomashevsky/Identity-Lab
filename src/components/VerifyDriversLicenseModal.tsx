@@ -3,6 +3,7 @@ import VerifyConfirmationModal from './VerifyConfirmationModal'
 import DriversLicenseVerifiedModal from './DriversLicenseVerifiedModal'
 import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface VerifyDriversLicenseModalProps {
   isOpen: boolean
@@ -138,7 +139,7 @@ export default function VerifyDriversLicenseModal({ isOpen, onClose }: VerifyDri
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onAutoClose={handleAutoClose}
-        documentType="Driver's License"
+        documentType={DOCUMENT_TYPES.DRIVERS_LICENSE}
       />
 
       <DriversLicenseVerifiedModal

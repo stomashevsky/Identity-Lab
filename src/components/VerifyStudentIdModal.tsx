@@ -3,6 +3,7 @@ import VerifyConfirmationModal from './VerifyConfirmationModal'
 import StudentIdVerifiedModal from './StudentIdVerifiedModal'
 import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface VerifyStudentIdModalProps {
   isOpen: boolean
@@ -133,7 +134,7 @@ export default function VerifyStudentIdModal({ isOpen, onClose }: VerifyStudentI
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onAutoClose={handleAutoClose}
-        documentType="Student ID"
+        documentType={DOCUMENT_TYPES.STUDENT_ID}
       />
 
       <StudentIdVerifiedModal

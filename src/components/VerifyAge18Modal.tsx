@@ -3,6 +3,7 @@ import VerifyConfirmationModal from './VerifyConfirmationModal'
 import Age18VerifiedModal from './Age18VerifiedModal'
 import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface VerifyAge18ModalProps {
   isOpen: boolean
@@ -96,7 +97,7 @@ export default function VerifyAge18Modal({ isOpen, onClose }: VerifyAge18ModalPr
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onAutoClose={handleAutoClose}
-        documentType="Age 18+"
+        documentType={DOCUMENT_TYPES.AGE_18}
       />
 
       <Age18VerifiedModal

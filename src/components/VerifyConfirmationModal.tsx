@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import ModalShell from './modals/ModalShell'
 import qrCodeImage from '../assets/images/qr-code-verify.png'
 
+import { DocumentType } from '../constants/documents'
+
 interface VerifyConfirmationModalProps {
   isOpen: boolean
   onClose: () => void
   onAutoClose?: () => void
-  documentType: string
+  documentType: DocumentType
 }
 
 export default function VerifyConfirmationModal({ isOpen, onClose, onAutoClose, documentType }: VerifyConfirmationModalProps) {

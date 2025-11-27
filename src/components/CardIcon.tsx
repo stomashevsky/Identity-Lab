@@ -1,7 +1,8 @@
 import Icon from './ui/Icon'
+import { IconName } from '../constants/icons'
 
 interface CardIconProps {
-  name: 'fingerprint' | 'book' | 'car' | 'calendar' | 'shield' | 'home' | 'star' | 'library'
+  name: IconName
   className?: string
 }
 

@@ -4,6 +4,7 @@ import ModalShell from './modals/ModalShell'
 import { MODAL_TWO_COLUMN_LAYOUT } from './modals/modalConfig'
 import { TextInput, DateInput, FormField, INPUT_BASE_CLASSES } from './ui'
 import { useInputDefaultValue } from '../hooks/useInputDefaultValue'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface DriversLicenseModalProps {
   isOpen: boolean
@@ -127,7 +128,7 @@ export default function DriversLicenseModal({ isOpen, onClose }: DriversLicenseM
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onBack={handleBack}
-        documentType="Driver's License"
+        documentType={DOCUMENT_TYPES.DRIVERS_LICENSE}
       />
     </>
   )

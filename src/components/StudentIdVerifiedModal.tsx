@@ -1,20 +1,11 @@
 import VerifiedModalBase from './modals/VerifiedModalBase'
 import { VerificationData } from '../../types/verification'
+import { StudentIdEnabledFields } from '../../types/documents'
 
 interface StudentIdVerifiedModalProps {
   isOpen: boolean
   onClose: () => void
-  enabledFields: {
-    fullName?: boolean
-    photograph?: boolean
-    dateOfBirth?: boolean
-    cardNumber?: boolean
-    issuingAuthority?: boolean
-    issuedOn?: boolean
-    expiryDate?: boolean
-    faculty?: boolean
-    degree?: boolean
-  }
+  enabledFields: StudentIdEnabledFields
 }
 
 export default function StudentIdVerifiedModal({ isOpen, onClose, enabledFields }: StudentIdVerifiedModalProps) {

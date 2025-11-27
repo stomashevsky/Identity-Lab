@@ -1,19 +1,11 @@
 import VerifiedModalBase from './modals/VerifiedModalBase'
 import { VerificationData } from '../../types/verification'
+import { MembershipCardEnabledFields } from '../../types/documents'
 
 interface MembershipCardVerifiedModalProps {
   isOpen: boolean
   onClose: () => void
-  enabledFields: {
-    fullName?: boolean
-    dateOfBirth?: boolean
-    cardNumber?: boolean
-    issuingAuthority?: boolean
-    issuedOn?: boolean
-    expiryDate?: boolean
-    membershipType?: boolean
-    status?: boolean
-  }
+  enabledFields: MembershipCardEnabledFields
 }
 
 export default function MembershipCardVerifiedModal({ isOpen, onClose, enabledFields }: MembershipCardVerifiedModalProps) {

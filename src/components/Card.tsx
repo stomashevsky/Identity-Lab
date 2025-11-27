@@ -1,9 +1,10 @@
 import { CardIcon } from './CardIcon'
 import BadgeColor, { BadgeColorVariant } from './ui/BadgeColor'
 import IconContainer from './ui/IconContainer'
+import { IconName } from '../constants/icons'
 
 export interface CardProps {
-  icon: 'fingerprint' | 'book' | 'car' | 'calendar' | 'shield' | 'home' | 'star' | 'library'
+  icon: IconName
   badge: string
   badgeVariant?: 'primary' | 'secondary' | BadgeColorVariant
   title: string

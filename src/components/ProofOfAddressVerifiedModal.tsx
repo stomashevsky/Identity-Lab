@@ -1,17 +1,11 @@
 import VerifiedModalBase from './modals/VerifiedModalBase'
 import { VerificationData } from '../../types/verification'
+import { ProofOfAddressEnabledFields } from '../../types/documents'
 
 interface ProofOfAddressVerifiedModalProps {
   isOpen: boolean
   onClose: () => void
-  enabledFields: {
-    fullName?: boolean
-    residentialAddress?: boolean
-    cardNumber?: boolean
-    issuingAuthority?: boolean
-    issuedOn?: boolean
-    expiryDate?: boolean
-  }
+  enabledFields: ProofOfAddressEnabledFields
 }
 
 export default function ProofOfAddressVerifiedModal({ isOpen, onClose, enabledFields }: ProofOfAddressVerifiedModalProps) {

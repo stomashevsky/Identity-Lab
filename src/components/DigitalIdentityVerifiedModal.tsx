@@ -1,23 +1,11 @@
 import VerifiedModalBase from './modals/VerifiedModalBase'
 import { VerificationData } from '../../types/verification'
+import { DigitalIdentityEnabledFields } from '../../types/documents'
 
 interface DigitalIdentityVerifiedModalProps {
   isOpen: boolean
   onClose: () => void
-  enabledFields: {
-    fullName?: boolean
-    dateOfBirth?: boolean
-    photograph?: boolean
-    placeOfBirth?: boolean
-    nationality?: boolean
-    residentialAddress?: boolean
-    cardNumber?: boolean
-    issuingAuthority?: boolean
-    issuingCountry?: boolean
-    documentType?: boolean
-    issuedOn?: boolean
-    expiryDate?: boolean
-  }
+  enabledFields: DigitalIdentityEnabledFields
 }
 
 export default function DigitalIdentityVerifiedModal({ isOpen, onClose, enabledFields }: DigitalIdentityVerifiedModalProps) {

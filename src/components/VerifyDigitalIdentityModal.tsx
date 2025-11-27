@@ -3,6 +3,7 @@ import VerifyConfirmationModal from './VerifyConfirmationModal'
 import DigitalIdentityVerifiedModal from './DigitalIdentityVerifiedModal'
 import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface VerifyDigitalIdentityModalProps {
   isOpen: boolean
@@ -150,7 +151,7 @@ export default function VerifyDigitalIdentityModal({ isOpen, onClose }: VerifyDi
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onAutoClose={handleAutoClose}
-        documentType="Digital Identity"
+        documentType={DOCUMENT_TYPES.DIGITAL_IDENTITY}
       />
 
       <DigitalIdentityVerifiedModal

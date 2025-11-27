@@ -3,6 +3,7 @@ import VerifyConfirmationModal from './VerifyConfirmationModal'
 import HealthInsuranceVerifiedModal from './HealthInsuranceVerifiedModal'
 import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface VerifyHealthInsuranceModalProps {
   isOpen: boolean
@@ -126,7 +127,7 @@ export default function VerifyHealthInsuranceModal({ isOpen, onClose }: VerifyHe
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onAutoClose={handleAutoClose}
-        documentType="Health Insurance Card"
+        documentType={DOCUMENT_TYPES.HEALTH_INSURANCE}
       />
 
       <HealthInsuranceVerifiedModal

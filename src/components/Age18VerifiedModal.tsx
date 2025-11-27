@@ -1,14 +1,11 @@
 import VerifiedModalBase from './modals/VerifiedModalBase'
 import { VerificationData } from '../../types/verification'
+import { Age18EnabledFields } from '../../types/documents'
 
 interface Age18VerifiedModalProps {
   isOpen: boolean
   onClose: () => void
-  enabledFields: {
-    confirmedAge?: boolean
-    cardNumber?: boolean
-    issuingAuthority?: boolean
-  }
+  enabledFields: Age18EnabledFields
 }
 
 export default function Age18VerifiedModal({ isOpen, onClose, enabledFields }: Age18VerifiedModalProps) {

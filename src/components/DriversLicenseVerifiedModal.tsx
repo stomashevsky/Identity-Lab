@@ -1,21 +1,11 @@
 import VerifiedModalBase from './modals/VerifiedModalBase'
 import { VerificationData } from '../../types/verification'
+import { DriversLicenseEnabledFields } from '../../types/documents'
 
 interface DriversLicenseVerifiedModalProps {
   isOpen: boolean
   onClose: () => void
-  enabledFields: {
-    fullName?: boolean
-    dateOfBirth?: boolean
-    photograph?: boolean
-    cardNumber?: boolean
-    issuingAuthority?: boolean
-    issuingCountry?: boolean
-    issuedOn?: boolean
-    expiryDate?: boolean
-    categories?: boolean
-    restrictions?: boolean
-  }
+  enabledFields: DriversLicenseEnabledFields
 }
 
 export default function DriversLicenseVerifiedModal({ isOpen, onClose, enabledFields }: DriversLicenseVerifiedModalProps) {

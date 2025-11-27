@@ -3,6 +3,7 @@ import VerifyConfirmationModal from './VerifyConfirmationModal'
 import LibraryCardVerifiedModal from './LibraryCardVerifiedModal'
 import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
+import { DOCUMENT_TYPES } from '../constants/documents'
 
 interface VerifyLibraryCardModalProps {
   isOpen: boolean
@@ -127,7 +128,7 @@ export default function VerifyLibraryCardModal({ isOpen, onClose }: VerifyLibrar
         isOpen={isConfirmationOpen}
         onClose={handleConfirmationClose}
         onAutoClose={handleAutoClose}
-        documentType="Library Card"
+        documentType={DOCUMENT_TYPES.LIBRARY_CARD}
       />
 
       <LibraryCardVerifiedModal
