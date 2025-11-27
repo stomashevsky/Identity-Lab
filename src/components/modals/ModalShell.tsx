@@ -1,4 +1,5 @@
-import { ReactNode, useEffect } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Button, useFocusTrap, useBodyScrollLock } from '../ui'
 import { type ModalSize, MODAL_RESPONSIVE_CLASSES } from './modalConfig'
 
@@ -43,6 +44,31 @@ export default function ModalShell({
 }: ModalShellProps) {
   const modalRef = useFocusTrap<HTMLDivElement>(isOpen && !disableFocusTrap)
   useBodyScrollLock(isOpen)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const [shouldRender, setShouldRender] = useState(isOpen)
+
+  // Handle animation states
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true)
+      // Start with closed state, then animate to open
+      setIsAnimating(false)
+      // Trigger enter animation on next frame
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsAnimating(true)
+        })
+      })
+    } else {
+      // Trigger exit animation
+      setIsAnimating(false)
+      // Remove from DOM after animation
+      const timer = setTimeout(() => {
+        setShouldRender(false)
+      }, 200) // Match modal-exit duration
+      return () => clearTimeout(timer)
+    }
+  }, [isOpen])
 
   // Handle ESC key close
   useEffect(() => {
@@ -60,7 +86,7 @@ export default function ModalShell({
     }
   }, [isOpen, onClose, disableEscapeClose])
 
-  if (!isOpen) return null
+  if (!shouldRender) return null
 
   const maxWidthClass = MODAL_RESPONSIVE_CLASSES.modal.maxWidth[size]
 
@@ -83,18 +109,25 @@ export default function ModalShell({
    * - Max height calc(100vh - 2rem)
    * - Divider hidden
    */
-  return (
+  
+  const modalContent = (
     <div className={MODAL_RESPONSIVE_CLASSES.container.base}>
-      {/* Background overlay */}
+      {/* Background overlay - covers entire viewport */}
       <div
-        className="fixed inset-0 bg-[#0a0a0a] opacity-30"
+        className={`fixed inset-0 bg-[#0a0a0a] transition-opacity duration-200 ${
+          isAnimating ? 'opacity-30' : 'opacity-0'
+        }`}
         onClick={onClose}
       />
 
-      {/* Modal */}
+      {/* Modal - centered in viewport */}
       <div
         ref={modalRef}
-        className={`${MODAL_RESPONSIVE_CLASSES.modal.base} ${maxWidthClass} ${MODAL_RESPONSIVE_CLASSES.modal.maxHeight}`}
+        className={`${MODAL_RESPONSIVE_CLASSES.modal.base} ${maxWidthClass} ${MODAL_RESPONSIVE_CLASSES.modal.maxHeight} transition-all duration-200 ease-spring-out relative ${
+          isAnimating
+            ? 'opacity-100 scale-100'
+            : 'opacity-0 scale-[0.95]'
+        }`}
       >
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto">
@@ -153,5 +186,8 @@ export default function ModalShell({
       </div>
     </div>
   )
+
+  // Render modal via Portal at body level to escape parent container constraints
+  return createPortal(modalContent, document.body)
 }
 

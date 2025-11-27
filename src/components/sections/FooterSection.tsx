@@ -1,4 +1,5 @@
 import Logo from '../ui/Logo'
+import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 
 const BACKGROUND_STYLE = {
   backgroundImage:
@@ -6,9 +7,14 @@ const BACKGROUND_STYLE = {
 }
 
 export default function FooterSection() {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 })
+
   return (
     <div
-      className="flex flex-col gap-8 items-center overflow-hidden px-0 py-12 relative shrink-0 w-full"
+      ref={ref as React.RefObject<HTMLElement>}
+      className={`flex flex-col gap-8 items-center overflow-hidden px-0 py-12 relative shrink-0 w-full transition-opacity duration-200 ${
+        isVisible ? 'opacity-100 animate-fade-in-scale' : 'opacity-0 scale-[0.96]'
+      }`}
       style={BACKGROUND_STYLE}
     >
       <div className="flex flex-col gap-12 items-start max-w-[672px] md:max-w-[1280px] px-6 py-0 relative shrink-0 w-full">

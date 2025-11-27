@@ -64,9 +64,10 @@ export const MODAL_MAX_HEIGHT = {
 export const MODAL_RESPONSIVE_CLASSES = {
   // Modal container (wrapper)
   container: {
-    // Positioning: bottom on mobile, centered on desktop
+    // Positioning: fixed relative to viewport, bottom on mobile, centered on desktop
     // Padding: none on mobile, present on desktop
-    base: 'fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4 overflow-hidden',
+    // High z-index to appear above all content
+    base: 'fixed inset-0 z-[100] flex items-end md:items-center justify-center p-0 md:p-4 overflow-hidden',
   },
   // Modal window
   modal: {

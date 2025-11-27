@@ -53,6 +53,7 @@ export default function Issue() {
                 key={index}
                 {...card}
                 onClick={cardClickHandlers[card.title as DocumentType]}
+                animationDelay={index * 25}
               />
             ))}
             {/* Invisible placeholder cards to align last row to the left */}
