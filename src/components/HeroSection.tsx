@@ -56,14 +56,26 @@ export default function HeroSection() {
           style={parallaxStyle}
         >
           <img 
-            alt="" 
+            alt="Identity Lab mobile interface preview" 
             className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full md:hidden" 
             src={heroPhoneMobile}
+            fetchPriority="high"
+            loading="eager"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement
+              target.style.display = 'none'
+            }}
           />
           <img 
-            alt="" 
+            alt="Identity Lab desktop interface preview" 
             className="absolute inset-0 max-w-none object-center object-cover rounded-2xl w-full h-full hidden md:block" 
             src={heroPhoneDesktop}
+            fetchPriority="high"
+            loading="eager"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement
+              target.style.display = 'none'
+            }}
           />
         </div>
       </div>

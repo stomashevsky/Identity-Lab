@@ -46,10 +46,10 @@ export default function FooterSection() {
           </p>
           <Button
             variant="subtle"
-            href="#"
+            href="mailto:contact@folio.id?subject=Terms%20of%20Service"
             className="relative shrink-0 text-center order-1 md:order-2"
           >
-            Terms of Service
+            Contact Us
           </Button>
         </div>
       </div>

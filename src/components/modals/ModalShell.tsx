@@ -31,6 +31,22 @@ export interface ModalShellProps {
   disableEscapeClose?: boolean // Disable ESC key close
 }
 
+/**
+ * Modal shell component with accessibility features
+ * - Focus trap for keyboard navigation
+ * - ARIA attributes for screen readers
+ * - ESC key support
+ * - Responsive design (mobile bottom sheet, desktop centered)
+ * - Body scroll lock when open
+ * 
+ * @param isOpen - Whether the modal is visible
+ * @param onClose - Callback when modal should close
+ * @param title - Modal title (used for aria-labelledby)
+ * @param description - Modal description (used for aria-describedby)
+ * @param size - Modal size: 'small' (400px) or 'large' (740px)
+ * @param disableFocusTrap - Disable focus trap (for nested modals)
+ * @param disableEscapeClose - Disable ESC key closing
+ */
 export default function ModalShell({
   isOpen,
   onClose,
@@ -89,6 +105,8 @@ export default function ModalShell({
   if (!shouldRender) return null
 
   const maxWidthClass = MODAL_RESPONSIVE_CLASSES.modal.maxWidth[size]
+  const titleId = title ? `modal-title-${Math.random().toString(36).substr(2, 9)}` : undefined
+  const descriptionId = description ? `modal-description-${Math.random().toString(36).substr(2, 9)}` : undefined
 
   /**
    * Responsive modal behavior:
@@ -118,11 +136,16 @@ export default function ModalShell({
           isAnimating ? 'opacity-30' : 'opacity-0'
         }`}
         onClick={onClose}
+        aria-hidden="true"
       />
 
       {/* Modal - centered in viewport */}
       <div
         ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
         className={`${MODAL_RESPONSIVE_CLASSES.modal.base} ${maxWidthClass} ${MODAL_RESPONSIVE_CLASSES.modal.maxHeight} transition-all duration-200 ease-spring-out relative ${
           isAnimating
             ? 'opacity-100 scale-100'
@@ -135,11 +158,11 @@ export default function ModalShell({
             {/* Header */}
             {title && (
               <div className="flex flex-col gap-1.5 items-start w-full">
-                <h2 className="font-bold leading-none text-lg text-[#0a0a0a] w-full">
+                <h2 id={titleId} className="font-bold leading-none text-lg text-[#0a0a0a] w-full">
                   {title}
                 </h2>
                 {description && (
-                  <p className="font-normal leading-5 text-sm text-[#737373] w-full">
+                  <p id={descriptionId} className="font-normal leading-5 text-sm text-[#737373] w-full">
                     {description}
                   </p>
                 )}

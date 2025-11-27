@@ -17,4 +17,6 @@ export { default as SectionHeader } from './SectionHeader'
 export { default as IconContainer } from './IconContainer'
 export { default as FeatureBlock } from './FeatureBlock'
 export { default as FAQItem } from './FAQItem'
+export { default as ToastContainer } from './Toast'
+export type { Toast, ToastType } from './Toast'
 

@@ -40,7 +40,11 @@ export default function VerificationTable({ data }: VerificationTableProps) {
                     <img 
                       alt="Photograph" 
                       className="absolute max-w-none object-center object-cover rounded-lg size-full" 
-                      src={photographImage} 
+                      src={photographImage}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        target.style.display = 'none'
+                      }}
                     />
                   </div>
                 </div>

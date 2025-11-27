@@ -1,16 +1,37 @@
 import { useState, useEffect } from 'react'
+import { Button } from '../ui'
+import { useToast } from '../../contexts/ToastContext'
 
 interface QRCodeDisplayProps {
   src: string
   alt?: string
+  qrCodeUrl?: string // Optional URL that the QR code represents
 }
 
-export default function QRCodeDisplay({ src, alt = 'QR Code' }: QRCodeDisplayProps) {
+/**
+ * Component for displaying QR codes with optional copy functionality
+ * If qrCodeUrl is provided, users can copy the URL to clipboard
+ */
+export default function QRCodeDisplay({ src, alt = 'QR Code', qrCodeUrl }: QRCodeDisplayProps) {
   const [isImageLoading, setIsImageLoading] = useState(true)
+  const { showSuccess, showError } = useToast()
 
   useEffect(() => {
     setIsImageLoading(true)
   }, [src])
+
+  const handleCopyUrl = async () => {
+    if (!qrCodeUrl) return
+
+    try {
+      await navigator.clipboard.writeText(qrCodeUrl)
+      showSuccess('QR code URL copied to clipboard')
+    } catch (err) {
+      showError('Failed to copy URL to clipboard')
+    }
+  }
+
+  const isUrl = qrCodeUrl && (qrCodeUrl.startsWith('http://') || qrCodeUrl.startsWith('https://'))
 
   return (
     <div className="bg-white border border-[rgba(163,163,163,0.5)] border-solid box-border flex flex-col gap-4 items-center justify-center p-5 rounded-2xl w-fit self-center">
@@ -30,6 +51,16 @@ export default function QRCodeDisplay({ src, alt = 'QR Code' }: QRCodeDisplayPro
           onError={() => setIsImageLoading(false)}
         />
       </div>
+      {isUrl && (
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={handleCopyUrl}
+          className="w-full"
+        >
+          Copy QR Code URL
+        </Button>
+      )}
     </div>
   )
 }

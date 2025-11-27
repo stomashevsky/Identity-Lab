@@ -21,6 +21,19 @@ type ButtonProps = BaseButtonProps &
     type?: 'button' | 'submit' | 'reset'
   }
 
+/**
+ * Button component that can render as either a button or anchor tag
+ * Automatically adds security attributes (rel="noopener noreferrer") for external links
+ * 
+ * @param variant - Visual style variant: 'primary', 'secondary', 'ghost', or 'subtle'
+ * @param size - Size of the button: 'sm', 'md', or 'lg'
+ * @param fullWidth - Whether the button should take full width of container
+ * @param href - If provided, renders as anchor tag instead of button
+ * @param target - Target for anchor tag (e.g., '_blank')
+ * @param rel - Rel attribute for anchor tag (auto-added for external links)
+ * @param disabled - Whether the button is disabled
+ * @param icon - Optional icon to display alongside text
+ */
 export default function Button({ 
   variant = 'primary', 
   size = 'md',

@@ -12,6 +12,17 @@ export interface CardProps {
   onClick?: () => void
 }
 
+/**
+ * Card component for displaying document types in the playground
+ * Supports keyboard navigation and click interactions
+ * 
+ * @param icon - Icon name to display
+ * @param badge - Badge text to show (e.g., "Required", "Optional")
+ * @param badgeVariant - Visual style of the badge
+ * @param title - Card title
+ * @param description - Card description text
+ * @param onClick - Optional click handler
+ */
 export default function Card({ icon, badge, badgeVariant = 'secondary', title, description, onClick }: CardProps) {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (onClick && (e.key === 'Enter' || e.key === ' ')) {
