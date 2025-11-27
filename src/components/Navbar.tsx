@@ -22,7 +22,7 @@ export default function Navbar() {
       {/* Background overlay - shown when menu is open on mobile */}
       {isMobileMenuOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-[rgba(10,10,10,0.3)] z-[3]"
+          className="md:hidden fixed inset-0 bg-[rgba(10,10,10,0.3)] z-[3]"
           onClick={toggleMobileMenu}
           aria-hidden="true"
         />
@@ -30,7 +30,7 @@ export default function Navbar() {
 
       {/* Menu opened state - overlays default navbar on mobile */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed bg-white border-b border-[#e5e5e5] border-solid left-0 right-0 top-0 z-[4] w-full">
+        <div className="md:hidden fixed bg-white border-b border-[#e5e5e5] border-solid left-0 right-0 top-0 z-[4] w-full">
           <div className="flex flex-col gap-6 items-center overflow-hidden px-0 py-6 w-full">
             <div className="flex flex-col gap-4 items-start justify-start w-full px-6 py-0 relative shrink-0">
               {/* Logo and close button */}
@@ -123,9 +123,9 @@ export default function Navbar() {
 
       {/* Default navbar state - always visible */}
       <div className="bg-white fixed top-0 left-0 right-0 shrink-0 w-full z-[50]">
-        <div className="flex flex-col gap-6 lg:gap-0 items-center overflow-hidden px-0 py-3.5 lg:py-4 w-full">
+        <div className="flex flex-col gap-6 md:gap-0 items-center overflow-hidden px-0 py-3.5 md:py-4 w-full">
           {/* Mobile container - full width */}
-          <div className="lg:hidden flex flex-col gap-6 items-start justify-center w-full px-6 py-0 relative shrink-0">
+          <div className="md:hidden flex flex-col gap-6 items-start justify-center w-full px-6 py-0 relative shrink-0">
             <div className="flex items-center justify-between relative shrink-0 w-full">
               {/* Logo */}
               <button
@@ -151,7 +151,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop container - max-w-[1280px] */}
-          <div className="hidden lg:flex flex-col items-center justify-center w-full">
+          <div className="hidden md:flex flex-col items-center justify-center w-full">
             <div className="flex items-center justify-between relative w-full max-w-[1280px] px-6 mx-auto">
               {/* Logo - left side */}
               <div className="flex-shrink-0 z-10">

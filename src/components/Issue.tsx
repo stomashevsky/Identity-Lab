@@ -4,6 +4,7 @@ import { cardData } from './cardData'
 import { verifyCardData } from './verifyCardData'
 import { useModalState } from '../hooks/useModalState'
 import { MODAL_MAPPING, getModalComponent, type DocumentType, type ModalMode } from './Issue/modalMapping'
+import { SectionHeader } from './ui'
 
 export default function Issue() {
   const [activeTab, setActiveTab] = useState<ModalMode>('Issue')
@@ -51,20 +52,11 @@ export default function Issue() {
   return (
     <>
       <div className="flex flex-col gap-10 items-center w-full">
-        {/* Title Section */}
-        <div className="flex flex-col gap-4 md:gap-5 items-center max-w-[576px] text-center w-full">
-          <div className="flex gap-1 items-center justify-center">
-            <p className="font-medium leading-5 text-sm text-[#737373]">
-              Playground
-            </p>
-          </div>
-            <h1 className="font-bold leading-[36px] md:leading-[40px] text-[30px] md:text-[36px] text-[#0a0a0a] tracking-[0px] whitespace-pre-wrap">
-              Work with digital documents
-            </h1>
-            <p className="font-normal leading-6 text-base text-[#737373] whitespace-pre-wrap">
-              Issue demo documents and test verification flows.
-            </p>
-          </div>
+        <SectionHeader
+          label="Playground"
+          title="Work with digital documents"
+          description="Issue demo documents and test verification flows."
+        />
 
           {/* Toggle Tabs */}
           <div className="bg-[#e5e5e5] flex items-center w-full max-w-[400px] overflow-hidden p-[3px] rounded-xl gap-[4px]">

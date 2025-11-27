@@ -13,4 +13,8 @@ export type { IconName } from './Icon'
 export { default as FormField } from './FormField'
 export type { FormFieldProps } from './FormField'
 export { INPUT_BASE_CLASSES, INPUT_FOCUS_CLASSES, INPUT_BASE_FOCUS_STYLES } from './inputStyles'
+export { default as SectionHeader } from './SectionHeader'
+export { default as IconContainer } from './IconContainer'
+export { default as FeatureBlock } from './FeatureBlock'
+export { default as FAQItem } from './FAQItem'
 

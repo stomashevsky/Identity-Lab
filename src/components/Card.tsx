@@ -1,5 +1,6 @@
 import { CardIcon } from './CardIcon'
 import BadgeColor, { BadgeColorVariant } from './ui/BadgeColor'
+import IconContainer from './ui/IconContainer'
 
 export interface CardProps {
   icon: 'fingerprint' | 'book' | 'car' | 'calendar' | 'shield' | 'home' | 'star' | 'library'
@@ -31,9 +32,9 @@ export default function Card({ icon, badge, badgeVariant = 'secondary', title, d
     >
       <div className="flex flex-col gap-6 items-start p-6 w-full">
         <div className="flex gap-2 items-start w-full">
-          <div className="bg-white border border-[#e5e5e5] border-solid flex items-center justify-center rounded-lg shrink-0 w-10 h-10">
+          <IconContainer>
             <CardIcon name={icon} className="w-6 h-6" />
-          </div>
+          </IconContainer>
           {badge && (
             <div className="flex flex-1 items-start justify-end">
               {badgeVariant === 'primary' ? (

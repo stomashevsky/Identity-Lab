@@ -1,4 +1,5 @@
 import Button from './ui/Button'
+import { SectionHeader } from './ui'
 import heroPhoneImage1 from '../assets/images/hero-phone-1.png'
 import heroPhoneImage2 from '../assets/images/hero-phone-2.png'
 import heroPhoneImage3 from '../assets/images/hero-phone-3.png'
@@ -13,20 +14,14 @@ export default function HeroSection() {
     <section id="hero" className="bg-white flex flex-col gap-6 items-center overflow-hidden px-0 pt-32 md:pt-[164px] pb-16 md:pb-24 relative shrink-0 w-full">
       <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-center max-w-[1280px] px-6 py-0 relative shrink-0 w-full">
         <div className="flex flex-1 flex-col gap-6 md:gap-8 items-start relative shrink-0 w-full md:min-h-0 md:min-w-0">
-          {/* Section Title */}
-          <div className="flex flex-col gap-4 md:gap-6 items-start relative shrink-0 w-full">
-            <div className="flex gap-1 items-center justify-center">
-              <p className="font-medium leading-5 text-sm text-[#737373]">
-                Inside Folio Wallet
-              </p>
-            </div>
-            <h1 className="font-bold leading-[36px] md:leading-[48px] text-[30px] md:text-[48px] text-[#0a0a0a] tracking-[0px] whitespace-pre-wrap">
-              Identity Lab
-            </h1>
-            <p className="font-normal leading-7 min-w-full relative shrink-0 text-[#737373] text-lg w-[min-content] whitespace-pre-wrap">
-              Issue and verify digital IDs in a safe sandbox that mirrors real European digital ID flows. Explore demo documents, test QR based verification and see exactly which data is shared.
-            </p>
-          </div>
+          <SectionHeader
+            label="Inside Folio Wallet"
+            title="Identity Lab"
+            description="Issue and verify digital IDs in a safe sandbox that mirrors real European digital ID flows. Explore demo documents, test QR based verification and see exactly which data is shared."
+            align="left"
+            maxWidth="672px"
+            headingLevel="h1"
+          />
           
           {/* Buttons */}
           <div className="flex flex-col md:flex-row gap-3 items-start relative shrink-0 w-full md:w-auto">
@@ -34,8 +29,7 @@ export default function HeroSection() {
               variant="primary" 
               fullWidth
               className="md:w-auto md:flex-initial"
-              onClick={(e) => {
-                e.preventDefault()
+              onClick={() => {
                 window.open('https://apps.apple.com/us/app/folio-digital-wallet-app/id1266382717', '_blank', 'noopener,noreferrer')
               }}
             >
@@ -45,8 +39,7 @@ export default function HeroSection() {
               variant="secondary"
               fullWidth
               className="md:w-auto md:flex-initial"
-              onClick={(e) => {
-                e.preventDefault()
+              onClick={() => {
                 scrollToSection('playground')
               }}
             >
