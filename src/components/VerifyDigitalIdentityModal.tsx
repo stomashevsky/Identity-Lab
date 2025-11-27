@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import VerifyConfirmationModal from './VerifyConfirmationModal'
 import DigitalIdentityVerifiedModal from './DigitalIdentityVerifiedModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
 
 interface VerifyDigitalIdentityModalProps {
@@ -54,7 +54,7 @@ export default function VerifyDigitalIdentityModal({ isOpen, onClose }: VerifyDi
   return (
     <>
       {!isVerifiedModalOpen && (
-        <BaseModal
+        <ModalShell
           isOpen={isOpen}
           onClose={onClose}
           title="Digital Identity"
@@ -143,7 +143,7 @@ export default function VerifyDigitalIdentityModal({ isOpen, onClose }: VerifyDi
               />
             </div>
           </div>
-        </BaseModal>
+        </ModalShell>
       )}
 
       <VerifyConfirmationModal

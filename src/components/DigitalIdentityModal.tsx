@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { TextInput, DateInput } from './ui'
 
 interface DigitalIdentityModalProps {
@@ -26,7 +26,7 @@ export default function DigitalIdentityModal({ isOpen, onClose }: DigitalIdentit
 
   return (
     <>
-      <BaseModal
+      <ModalShell
         isOpen={isOpen}
         onClose={onClose}
         title="Digital Identity"
@@ -176,7 +176,7 @@ export default function DigitalIdentityModal({ isOpen, onClose }: DigitalIdentit
             </div>
           </div>
         </div>
-      </BaseModal>
+      </ModalShell>
 
       <ConfirmationModal
         isOpen={isConfirmationOpen}

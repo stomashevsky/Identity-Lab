@@ -1,4 +1,4 @@
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import checkmarkIcon from '../assets/icons/circle-check.svg'
 
 interface ProofOfAddressVerifiedModalProps {
@@ -36,7 +36,7 @@ export default function ProofOfAddressVerifiedModal({ isOpen, onClose, enabledFi
   })
 
   return (
-    <BaseModal
+    <ModalShell
       isOpen={isOpen}
       onClose={onClose}
       size="large"
@@ -96,6 +96,6 @@ export default function ProofOfAddressVerifiedModal({ isOpen, onClose, enabledFi
           ))}
         </div>
       </div>
-    </BaseModal>
+    </ModalShell>
   )
 }

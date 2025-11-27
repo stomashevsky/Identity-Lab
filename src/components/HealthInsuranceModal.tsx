@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { TextInput, DateInput } from './ui'
 
 interface HealthInsuranceModalProps {
@@ -26,7 +26,7 @@ export default function HealthInsuranceModal({ isOpen, onClose }: HealthInsuranc
 
   return (
     <>
-      <BaseModal
+      <ModalShell
         isOpen={isOpen}
         onClose={onClose}
         title="Health Insurance"
@@ -143,7 +143,7 @@ export default function HealthInsuranceModal({ isOpen, onClose }: HealthInsuranc
             </div>
           </div>
         </div>
-      </BaseModal>
+      </ModalShell>
 
       <ConfirmationModal
         isOpen={isConfirmationOpen}

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import VerifyConfirmationModal from './VerifyConfirmationModal'
 import HealthInsuranceVerifiedModal from './HealthInsuranceVerifiedModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
 
 interface VerifyHealthInsuranceModalProps {
@@ -50,7 +50,7 @@ export default function VerifyHealthInsuranceModal({ isOpen, onClose }: VerifyHe
   return (
     <>
       {!isVerifiedModalOpen && (
-        <BaseModal
+        <ModalShell
           isOpen={isOpen}
           onClose={onClose}
           title="Health Insurance"
@@ -119,7 +119,7 @@ export default function VerifyHealthInsuranceModal({ isOpen, onClose }: VerifyHe
               />
             </div>
           </div>
-        </BaseModal>
+        </ModalShell>
       )}
 
       <VerifyConfirmationModal

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import qrCodeImage from '../assets/images/qr-code-verify.png'
 
 interface VerifyConfirmationModalProps {
@@ -30,7 +30,7 @@ export default function VerifyConfirmationModal({ isOpen, onClose, onAutoClose, 
   }, [isOpen, onAutoClose])
 
   return (
-    <BaseModal
+    <ModalShell
       isOpen={isOpen}
       onClose={onClose}
       title={`Verify ${documentType}`}
@@ -56,7 +56,7 @@ export default function VerifyConfirmationModal({ isOpen, onClose, onAutoClose, 
           />
         </div>
       </div>
-    </BaseModal>
+    </ModalShell>
   )
 }
 

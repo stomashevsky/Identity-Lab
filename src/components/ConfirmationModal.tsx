@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import qrCodeImage from '../assets/images/qr-code-issue.png'
 
 interface ConfirmationModalProps {
@@ -19,7 +19,7 @@ export default function ConfirmationModal({ isOpen, onClose, onBack, documentTyp
   }, [isOpen])
 
   return (
-    <BaseModal
+    <ModalShell
       isOpen={isOpen}
       onClose={onClose}
       title={`Issue ${documentType}`}
@@ -46,7 +46,7 @@ export default function ConfirmationModal({ isOpen, onClose, onBack, documentTyp
           />
         </div>
       </div>
-    </BaseModal>
+    </ModalShell>
   )
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { TextInput, DateInput } from './ui'
 
 interface MembershipCardModalProps {
@@ -26,7 +26,7 @@ export default function MembershipCardModal({ isOpen, onClose }: MembershipCardM
 
   return (
     <>
-      <BaseModal
+      <ModalShell
         isOpen={isOpen}
         onClose={onClose}
         title="Membership Card"
@@ -143,7 +143,7 @@ export default function MembershipCardModal({ isOpen, onClose }: MembershipCardM
             </div>
           </div>
         </div>
-      </BaseModal>
+      </ModalShell>
 
       <ConfirmationModal
         isOpen={isConfirmationOpen}

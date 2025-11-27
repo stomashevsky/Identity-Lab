@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import VerifyConfirmationModal from './VerifyConfirmationModal'
 import MembershipCardVerifiedModal from './MembershipCardVerifiedModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
 
 interface VerifyMembershipCardModalProps {
@@ -51,7 +51,7 @@ export default function VerifyMembershipCardModal({ isOpen, onClose }: VerifyMem
   return (
     <>
       {!isVerifiedModalOpen && (
-        <BaseModal
+        <ModalShell
           isOpen={isOpen}
           onClose={onClose}
           title="Membership Card"
@@ -120,7 +120,7 @@ export default function VerifyMembershipCardModal({ isOpen, onClose }: VerifyMem
               />
             </div>
           </div>
-        </BaseModal>
+        </ModalShell>
       )}
 
       <VerifyConfirmationModal

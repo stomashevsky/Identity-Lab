@@ -1,4 +1,4 @@
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import checkmarkIcon from '../assets/icons/circle-check.svg'
 
 interface HealthInsuranceVerifiedModalProps {
@@ -40,7 +40,7 @@ export default function HealthInsuranceVerifiedModal({ isOpen, onClose, enabledF
   })
 
   return (
-    <BaseModal
+    <ModalShell
       isOpen={isOpen}
       onClose={onClose}
       size="large"
@@ -100,6 +100,6 @@ export default function HealthInsuranceVerifiedModal({ isOpen, onClose, enabledF
           ))}
         </div>
       </div>
-    </BaseModal>
+    </ModalShell>
   )
 }

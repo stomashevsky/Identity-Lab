@@ -1,4 +1,4 @@
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import checkmarkIcon from '../assets/icons/circle-check.svg'
 import photographImage from '../assets/images/photograph.png'
 
@@ -63,7 +63,7 @@ export default function DriversLicenseVerifiedModal({ isOpen, onClose, enabledFi
   const verificationData = filteredData
 
   return (
-    <BaseModal
+    <ModalShell
       isOpen={isOpen}
       onClose={onClose}
       size="large"
@@ -136,7 +136,7 @@ export default function DriversLicenseVerifiedModal({ isOpen, onClose, enabledFi
           ))}
         </div>
       </div>
-    </BaseModal>
+    </ModalShell>
   )
 }
 

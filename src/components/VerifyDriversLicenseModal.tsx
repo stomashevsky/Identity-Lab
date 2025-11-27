@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import VerifyConfirmationModal from './VerifyConfirmationModal'
 import DriversLicenseVerifiedModal from './DriversLicenseVerifiedModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
 
 interface VerifyDriversLicenseModalProps {
@@ -52,7 +52,7 @@ export default function VerifyDriversLicenseModal({ isOpen, onClose }: VerifyDri
   return (
     <>
       {!isVerifiedModalOpen && (
-        <BaseModal
+        <ModalShell
           isOpen={isOpen}
           onClose={onClose}
           title="Driver's License"
@@ -131,7 +131,7 @@ export default function VerifyDriversLicenseModal({ isOpen, onClose }: VerifyDri
               />
             </div>
           </div>
-        </BaseModal>
+        </ModalShell>
       )}
 
       <VerifyConfirmationModal

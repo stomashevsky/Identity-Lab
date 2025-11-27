@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { TextInput } from './ui'
 
 interface Age18ModalProps {
@@ -26,7 +26,7 @@ export default function Age18Modal({ isOpen, onClose }: Age18ModalProps) {
 
   return (
     <>
-      <BaseModal
+      <ModalShell
         isOpen={isOpen}
         onClose={onClose}
         title="Age 18+"
@@ -71,7 +71,7 @@ export default function Age18Modal({ isOpen, onClose }: Age18ModalProps) {
             />
           </div>
         </div>
-      </BaseModal>
+      </ModalShell>
 
       <ConfirmationModal
         isOpen={isConfirmationOpen}

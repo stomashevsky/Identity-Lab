@@ -1,21 +1,36 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { Button, useFocusTrap, useBodyScrollLock } from '../ui'
+import { type ModalSize } from './modalConfig'
 
-interface BaseModalProps {
+// Типы для footer кнопок
+export interface ModalFooterButton {
+  label: string
+  onClick: () => void
+  fullWidth?: boolean
+}
+
+export interface ModalPrimaryButton extends ModalFooterButton {
+  disabled?: boolean
+}
+
+export interface ModalFooter {
+  primary?: ModalPrimaryButton
+  secondary?: ModalFooterButton
+}
+
+export interface ModalShellProps {
   isOpen: boolean
   onClose: () => void
   title?: string
   description?: string
-  size?: 'small' | 'large' // 400px или 740px
+  size?: ModalSize
   children: ReactNode
-  footer?: {
-    primary?: { label: string; onClick: () => void; disabled?: boolean; fullWidth?: boolean }
-    secondary?: { label: string; onClick: () => void; fullWidth?: boolean }
-  }
+  footer?: ModalFooter
   disableFocusTrap?: boolean // Для случаев с вложенными модалками
+  disableEscapeClose?: boolean // Отключить закрытие по ESC
 }
 
-export default function BaseModal({
+export default function ModalShell({
   isOpen,
   onClose,
   title,
@@ -24,9 +39,26 @@ export default function BaseModal({
   children,
   footer,
   disableFocusTrap = false,
-}: BaseModalProps) {
+  disableEscapeClose = false,
+}: ModalShellProps) {
   const modalRef = useFocusTrap<HTMLDivElement>(isOpen && !disableFocusTrap)
   useBodyScrollLock(isOpen)
+
+  // Обработка закрытия по ESC
+  useEffect(() => {
+    if (!isOpen || disableEscapeClose) return
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose()
+      }
+    }
+
+    document.addEventListener('keydown', handleEscape)
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [isOpen, onClose, disableEscapeClose])
 
   if (!isOpen) return null
 

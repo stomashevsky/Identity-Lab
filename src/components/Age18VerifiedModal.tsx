@@ -1,4 +1,4 @@
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import checkmarkIcon from '../assets/icons/circle-check.svg'
 
 interface Age18VerifiedModalProps {
@@ -26,7 +26,7 @@ export default function Age18VerifiedModal({ isOpen, onClose, enabledFields }: A
   })
 
   return (
-    <BaseModal
+    <ModalShell
       isOpen={isOpen}
       onClose={onClose}
       size="large"
@@ -86,7 +86,7 @@ export default function Age18VerifiedModal({ isOpen, onClose, enabledFields }: A
           ))}
         </div>
       </div>
-    </BaseModal>
+    </ModalShell>
   )
 }
 

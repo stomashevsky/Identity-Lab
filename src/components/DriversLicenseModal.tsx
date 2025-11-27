@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ConfirmationModal from './ConfirmationModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { TextInput, DateInput } from './ui'
 
 interface DriversLicenseModalProps {
@@ -26,7 +26,7 @@ export default function DriversLicenseModal({ isOpen, onClose }: DriversLicenseM
 
   return (
     <>
-      <BaseModal
+      <ModalShell
         isOpen={isOpen}
         onClose={onClose}
         title="Driver's License"
@@ -153,7 +153,7 @@ export default function DriversLicenseModal({ isOpen, onClose }: DriversLicenseM
             </div>
           </div>
         </div>
-      </BaseModal>
+      </ModalShell>
 
       <ConfirmationModal
         isOpen={isConfirmationOpen}

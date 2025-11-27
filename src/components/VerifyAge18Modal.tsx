@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import VerifyConfirmationModal from './VerifyConfirmationModal'
 import Age18VerifiedModal from './Age18VerifiedModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
 
 interface VerifyAge18ModalProps {
@@ -45,7 +45,7 @@ export default function VerifyAge18Modal({ isOpen, onClose }: VerifyAge18ModalPr
   return (
     <>
       {!isVerifiedModalOpen && (
-        <BaseModal
+        <ModalShell
           isOpen={isOpen}
           onClose={onClose}
           title="Age 18+"
@@ -89,7 +89,7 @@ export default function VerifyAge18Modal({ isOpen, onClose }: VerifyAge18ModalPr
               />
             </div>
           </div>
-        </BaseModal>
+        </ModalShell>
       )}
 
       <VerifyConfirmationModal

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import VerifyConfirmationModal from './VerifyConfirmationModal'
 import ProofOfAddressVerifiedModal from './ProofOfAddressVerifiedModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
 
 interface VerifyProofOfAddressModalProps {
@@ -49,7 +49,7 @@ export default function VerifyProofOfAddressModal({ isOpen, onClose }: VerifyPro
   return (
     <>
       {!isVerifiedModalOpen && (
-        <BaseModal
+        <ModalShell
           isOpen={isOpen}
           onClose={onClose}
           title="Proof of Address"
@@ -108,7 +108,7 @@ export default function VerifyProofOfAddressModal({ isOpen, onClose }: VerifyPro
               />
             </div>
           </div>
-        </BaseModal>
+        </ModalShell>
       )}
 
       <VerifyConfirmationModal

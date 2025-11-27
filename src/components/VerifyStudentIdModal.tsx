@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import VerifyConfirmationModal from './VerifyConfirmationModal'
 import StudentIdVerifiedModal from './StudentIdVerifiedModal'
-import BaseModal from './modals/BaseModal'
+import ModalShell from './modals/ModalShell'
 import { Switch, TextInput } from './ui'
 
 interface VerifyStudentIdModalProps {
@@ -52,7 +52,7 @@ export default function VerifyStudentIdModal({ isOpen, onClose }: VerifyStudentI
   return (
     <>
       {!isVerifiedModalOpen && (
-        <BaseModal
+        <ModalShell
           isOpen={isOpen}
           onClose={onClose}
           title="Student ID"
@@ -126,7 +126,7 @@ export default function VerifyStudentIdModal({ isOpen, onClose }: VerifyStudentI
               />
             </div>
           </div>
-        </BaseModal>
+        </ModalShell>
       )}
 
       <VerifyConfirmationModal
