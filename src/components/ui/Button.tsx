@@ -16,8 +16,10 @@ interface BaseButtonProps {
 }
 
 type ButtonProps = BaseButtonProps & 
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'type'> &
-  Partial<Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target' | 'rel'>>
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'> &
+  Partial<Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target' | 'rel'>> & {
+    type?: 'button' | 'submit' | 'reset'
+  }
 
 export default function Button({ 
   variant = 'primary', 

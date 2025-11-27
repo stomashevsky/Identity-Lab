@@ -10,10 +10,9 @@ export interface CardProps {
   title: string
   description: string
   onClick?: () => void
-  animationDelay?: number
 }
 
-export default function Card({ icon, badge, badgeVariant = 'secondary', title, description, onClick, animationDelay = 0 }: CardProps) {
+export default function Card({ icon, badge, badgeVariant = 'secondary', title, description, onClick }: CardProps) {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (onClick && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault()
