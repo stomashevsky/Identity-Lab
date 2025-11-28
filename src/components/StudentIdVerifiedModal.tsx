@@ -13,7 +13,7 @@ export default function StudentIdVerifiedModal({ isOpen, onClose, enabledFields 
   const allVerificationData: VerificationData = [
     { key: 'firstName', label: 'First Name', value: 'Carmen', enabledKey: 'fullName', isPhoto: false },
     { key: 'lastName', label: 'Last Name', value: 'Muestra', enabledKey: 'fullName', isPhoto: false },
-    { key: 'photograph', label: 'Photograph', value: '', enabledKey: 'photograph', isPhoto: true },
+    { key: 'photograph', label: 'ID Photo', value: '', enabledKey: 'photograph', isPhoto: true },
     { key: 'dateOfBirth', label: 'Date of Birth', value: '01/01/1980', enabledKey: 'dateOfBirth', isPhoto: false },
     { key: 'cardNumber', label: 'Card Number', value: 'S7654321', enabledKey: 'cardNumber', isPhoto: false },
     { key: 'issuingAuthority', label: 'Issuing Authority', value: 'ID Authority', enabledKey: 'issuingAuthority', isPhoto: false },

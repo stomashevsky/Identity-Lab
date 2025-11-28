@@ -38,7 +38,7 @@ export default function VerificationTable({ data }: VerificationTableProps) {
                   <div className="absolute inset-0 pointer-events-none rounded-lg">
                     <div className="absolute bg-[#f2f2f7] inset-0 rounded-lg" />
                     <img 
-                      alt="Photograph" 
+                      alt="ID Photo" 
                       className="absolute max-w-none object-center object-cover rounded-lg size-full" 
                       src={photographImage}
                       onError={(e) => {

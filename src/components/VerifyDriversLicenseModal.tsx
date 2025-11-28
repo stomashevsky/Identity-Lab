@@ -81,6 +81,11 @@ export default function VerifyDriversLicenseModal({ isOpen, onClose }: VerifyDri
 
             <div className="flex flex-col gap-4 items-start w-full">
               <Switch
+                label="ID Photo"
+                checked={switches.photograph}
+                onChange={(checked) => handleSwitchChange('photograph', checked)}
+              />
+              <Switch
                 label="Full Name"
                 checked={switches.fullName}
                 onChange={(checked) => handleSwitchChange('fullName', checked)}
@@ -89,11 +94,6 @@ export default function VerifyDriversLicenseModal({ isOpen, onClose }: VerifyDri
                 label="Date of Birth"
                 checked={switches.dateOfBirth}
                 onChange={(checked) => handleSwitchChange('dateOfBirth', checked)}
-              />
-              <Switch
-                label="Photograph"
-                checked={switches.photograph}
-                onChange={(checked) => handleSwitchChange('photograph', checked)}
               />
               <Switch
                 label="Card Number"

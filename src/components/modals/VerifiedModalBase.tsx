@@ -33,19 +33,24 @@ export default function VerifiedModalBase<T extends Record<string, boolean | und
     return enabledFields[item.enabledKey as keyof typeof enabledFields] === true
   })
 
-  // Reorder: fullName fields first, then photograph (if present), then others
+  // Reorder: photograph first (if present), then fullName fields, then others
   const firstNameIndex = filteredData.findIndex((item) => item.key === 'firstName')
   const lastNameIndex = filteredData.findIndex((item) => item.key === 'lastName')
   const photographIndex = filteredData.findIndex((item) => item.isPhoto)
 
-  if (firstNameIndex !== -1 && lastNameIndex !== -1 && photographIndex !== -1) {
+  if (photographIndex !== -1 && firstNameIndex !== -1 && lastNameIndex !== -1) {
+    const photograph = filteredData[photographIndex]
     const firstName = filteredData[firstNameIndex]
     const lastName = filteredData[lastNameIndex]
-    const photograph = filteredData[photographIndex]
     const others = filteredData.filter(
       (_, idx) => idx !== firstNameIndex && idx !== lastNameIndex && idx !== photographIndex
     )
-    filteredData = [firstName, lastName, photograph, ...others]
+    filteredData = [photograph, firstName, lastName, ...others]
+  } else if (photographIndex !== -1) {
+    // If photograph exists but no fullName
+    const photograph = filteredData[photographIndex]
+    const others = filteredData.filter((_, idx) => idx !== photographIndex)
+    filteredData = [photograph, ...others]
   } else if (firstNameIndex !== -1 && lastNameIndex !== -1) {
     // If fullName exists but no photograph
     const firstName = filteredData[firstNameIndex]

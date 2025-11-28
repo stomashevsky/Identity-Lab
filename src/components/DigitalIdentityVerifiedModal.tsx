@@ -13,7 +13,7 @@ export default function DigitalIdentityVerifiedModal({ isOpen, onClose, enabledF
   const allVerificationData: VerificationData = [
     { key: 'firstName', label: 'First Name', value: 'Carmen', enabledKey: 'fullName', isPhoto: false },
     { key: 'lastName', label: 'Last Name', value: 'Muestra', enabledKey: 'fullName', isPhoto: false },
-    { key: 'photograph', label: 'Photograph', value: '', enabledKey: 'photograph', isPhoto: true },
+    { key: 'photograph', label: 'ID Photo', value: '', enabledKey: 'photograph', isPhoto: true },
     { key: 'dateOfBirth', label: 'Date of Birth', value: '01/01/1980', enabledKey: 'dateOfBirth', isPhoto: false },
     { key: 'placeOfBirth', label: 'Place of Birth', value: 'City, Country', enabledKey: 'placeOfBirth', isPhoto: false },
     { key: 'nationality', label: 'Nationality', value: 'Not specified', enabledKey: 'nationality', isPhoto: false },

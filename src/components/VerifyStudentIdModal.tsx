@@ -81,14 +81,14 @@ export default function VerifyStudentIdModal({ isOpen, onClose }: VerifyStudentI
 
             <div className="flex flex-col gap-4 items-start w-full">
               <Switch
+                label="ID Photo"
+                checked={switches.photograph}
+                onChange={(checked) => handleSwitchChange('photograph', checked)}
+              />
+              <Switch
                 label="Full Name"
                 checked={switches.fullName}
                 onChange={(checked) => handleSwitchChange('fullName', checked)}
-              />
-              <Switch
-                label="Photograph"
-                checked={switches.photograph}
-                onChange={(checked) => handleSwitchChange('photograph', checked)}
               />
               <Switch
                 label="Date of Birth"
