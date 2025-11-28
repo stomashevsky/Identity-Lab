@@ -25,8 +25,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         aria-hidden="true"
       />
       <div className="md:hidden fixed bg-white border-b border-[#e5e5e5] border-solid left-0 right-0 top-0 z-[4] w-full">
-        <div className="flex flex-col gap-6 items-center overflow-hidden px-0 py-6 w-full">
-          <div className="flex flex-col gap-4 items-start justify-start w-full px-6 py-0 relative shrink-0">
+        <div className="flex flex-col gap-6 items-start overflow-hidden px-0 py-3.5 w-full">
+          <div className="flex flex-col gap-8 items-start justify-start w-full px-6 py-0 relative shrink-0">
             <div className="flex items-center justify-between relative shrink-0 w-full">
               <LogoButton
                 onClick={(e) => {
@@ -58,7 +58,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     e.stopPropagation()
                     handleNavClick('playground')
                   }}
-                  className="justify-start"
+                  className="justify-start text-left"
                 >
                   Playground
                 </Button>
@@ -70,7 +70,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     e.stopPropagation()
                     handleNavClick('how-it-works')
                   }}
-                  className="justify-start"
+                  className="justify-start text-left"
                 >
                   How it works
                 </Button>
@@ -82,7 +82,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     e.stopPropagation()
                     handleNavClick('faq')
                   }}
-                  className="justify-start"
+                  className="justify-start text-left"
                 >
                   FAQ
                 </Button>
@@ -90,7 +90,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
               <Button
                 variant="primary"
-                className="w-auto"
                 onClick={(e) => {
                   e.preventDefault()
                   onClose()

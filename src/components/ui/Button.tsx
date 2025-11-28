@@ -81,7 +81,13 @@ export default function Button({
     ? `${sizeClass.split(' ').filter(c => !c.startsWith('px-') && !c.startsWith('py-')).join(' ')} ${subtleSizeClasses[size]}`
     : sizeClass
 
-  const allClasses = `${baseClasses} ${finalSizeClass} ${variantClass} ${widthClasses} whitespace-nowrap ${className}`
+  // Remove justify-center from baseClasses if justify-start or justify-end is in className
+  const hasJustifyOverride = className.includes('justify-start') || className.includes('justify-end')
+  const adjustedBaseClasses = hasJustifyOverride 
+    ? baseClasses.replace('justify-center', '').trim()
+    : baseClasses
+  
+  const allClasses = `${adjustedBaseClasses} ${finalSizeClass} ${variantClass} ${widthClasses} whitespace-nowrap ${className}`
 
   // If href is provided, render as anchor tag
   if (href) {
